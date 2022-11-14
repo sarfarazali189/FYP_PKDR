@@ -19,7 +19,7 @@ export function Form2(props: IProps) {
                     <Form.Control
                         value={formState.email}
                         onChange={(event) => handleChange(event.target.value, 'email')}
-                        type="text"
+                        type="email"
                     />
                 </Form.Group>
                 <Form.Group controlId="formGroupPassword">
@@ -27,7 +27,7 @@ export function Form2(props: IProps) {
                     <Form.Control
                         value={formState.phonenumber}
                         onChange={(event) => handleChange(event.target.value, 'phonenumber')}
-                        type="text"
+                        type="number"
                     />
                 </Form.Group>
                 
@@ -36,7 +36,7 @@ export function Form2(props: IProps) {
                     <Form.Control
                         value={formState.cnic}
                         onChange={(event) => handleChange(event.target.value, 'cnic')}
-                        type="text"
+                        type="number"
                     />
                 </Form.Group>
                 <Form.Group>

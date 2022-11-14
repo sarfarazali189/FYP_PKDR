@@ -8,6 +8,7 @@ import { Auth } from  "@aws-amplify/auth";
 import { API } from "@aws-amplify/api";
 
 import Link from 'next/link'
+import { CognitoIdentityProviderClient, AddCustomAttributesCommand } from "@aws-sdk/client-cognito-identity-provider";
 
 
 interface IProps {
@@ -24,9 +25,95 @@ export function ReviewFormValue(props: IProps) {
         // reset form
     };
 
+
+
+    var params2 = {
+        UserPoolId: 'us-west-2_lQGLo8FMF',
+        Username: "sarfarazalihaikh189@gmail.com",
+       
+    };
+
+
+
+
+
+
+    var params = {
+        
+
+     //your confirmed user gets added to this group
+        UserPoolId: 'us-west-2_lQGLo8FMF',
+        Username: "sarfarazalishaikh189@gmail.com",
+        TemporaryPassword: "Abc@3212434355",
+        
+        UserAttributes: [
+          {
+            Name: "email",
+            Value: formState.email
+          },
+          {
+            Name: "email_verified",
+            Value: "true"
+          }
+         
+        ]
+    };
+    
+    var params1 = {
+           UserPoolId: 'us-west-2_lQGLo8FMF',
+           Username: formState.email,
+           GroupName: 'Users',
+       
+       };
+    
+
+       
+
+
+const addgroup=()=>{
+    var AWS = require('aws-sdk');
+    
+    var client = new AWS.CognitoIdentityServiceProvider();
+
+    client.adminAddUserToGroup(params1, function(err: any, data: any) {
+        if (err) {
+            console.log("EE",err);
+          //  reject(err);
+        } else {
+            console.log("g",data);
+            //resolve(data);
+        }
+    })
+
+}
+
+
+
+const admincheck=()=>{
+    var AWS = require('aws-sdk');
+    
+    var client = new AWS.CognitoIdentityServiceProvider();
+
+    client.adminGetUser(params2, function(err: any, data: any) {
+        if (err) {
+            console.log("Error",err);
+          //  reject(err);
+        } else {
+            console.log("user",data);
+            //resolve(data);
+        }
+    })
+
+}
+
+
+
+
+
+
     const submitHandler = async (event: { preventDefault: () => void; }) => {    
         event.preventDefault();
-        const currentUser = await Auth.currentAuthenticatedUser();
+       /* const currentUser = await Auth.currentAuthenticatedUser();
         try {
             const result = await API.graphql({
                 query: createUser,
@@ -48,11 +135,29 @@ export function ReviewFormValue(props: IProps) {
                     },
                 },
             });
-            console.log(result);
-            console.log(currentUser);
-        } catch (err) {
-            console.log(err);
-        }
+            //console.log(result);
+          //  console.log(currentUser);
+        //} catch (err) {
+      //      console.log(err);
+    //    }
+    */
+        var AWS = require('aws-sdk');
+        AWS.config.update({
+            accessKeyId: "AKIA3RQLSBPSRUXSYHNO",
+            secretAccessKey: "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",
+            region: "us-west-2"
+        });
+        var client = new AWS.CognitoIdentityServiceProvider();
+        client.adminCreateUser(params, function(err: any, data: any) {
+            if (err) {
+                console.log("EE",err);
+              //  reject(err);
+            } else {
+                console.log("DDD",data);
+                //resolve(data);
+            }
+        })
+
     };
 
 
@@ -73,8 +178,16 @@ export function ReviewFormValue(props: IProps) {
                 <Button className="mr-4 my-3" onClick={previousStep} variant="primary" type="submit">
                     Previous
                 </Button>
-                <Button onClick={submitHandler} variant="primary" >
+                <Button onClick={submitHandler } variant="primary" >
                     Confirm
+                </Button>
+                
+                <Button onClick={addgroup } variant="primary" >
+                    addto group
+                </Button>
+
+                <Button onClick={admincheck } variant="primary" >
+                    checkuser
                 </Button>
             </Form>
         </div>

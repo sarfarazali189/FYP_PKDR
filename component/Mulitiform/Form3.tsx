@@ -23,7 +23,7 @@ export function Form3(props: IProps) {
                     <Form.Control
                         value={formState.DOB}
                         onChange={(event) => handleChange(event.target.value, 'DOB')}
-                        type="text"
+                        type="date"
                     />
                 </Form.Group>
                 <Form.Group controlId="formGroupPassword">
