@@ -2,7 +2,7 @@ import { withSSRContext } from 'aws-amplify'
 import {  Auth } from 'aws-amplify';
 
 import { Cache } from 'aws-amplify';
-
+import Check from "./Check"
 function Protect({ authenticated, username }) {
 // Run this after the sign-in
 async function checktoken(){
@@ -11,7 +11,8 @@ async function checktoken(){
     let jwt = accessToken.getJwtToken()
     //You can print them to see the full objects
     console.log(`myAccessToken: ${JSON.stringify(accessToken)}`)
-    console.log(`myJwt: ${jwt}`)
+    console.log(`myJwt: ${jwt}`);
+   // <Check ema="sarfa"/>
   })
 
 }

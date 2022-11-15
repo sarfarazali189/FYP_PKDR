@@ -17,11 +17,11 @@ Amplify.configure({ ...awsExports, ssr: true });
 
 
 const Home: NextPage = () => {
-  async function checkuser() {
+ async function checkuser() {
     const user=await Auth.currentAuthenticatedUser()
     console.log('user',user)
     
-  }
+ }
 
   return (
     <div >

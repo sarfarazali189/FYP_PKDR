@@ -3,6 +3,9 @@ import { Web3AuthCore } from "@web3auth/core";
 import { Web3Auth } from "@web3auth/web3auth";
 import Link from 'next/link'
 import { Auth } from  "@aws-amplify/auth";
+import * as React from 'react';
+import Check from "../../pages/Check";
+import { useRouter } from 'next/router'
 
 import {
   WALLET_ADAPTERS,
@@ -13,6 +16,7 @@ import { OpenloginAdapter } from "@web3auth/openlogin-adapter";
 
 
 import { polygonMumbaiPRC } from "./RPC/polygon-mumbai";
+import { Email } from "aws-sdk/clients/codecommit";
 
 const clientId = "BAA4FWUihMGqfS8KcHdaDWZIPxqYtVPtgKBsU2V2KFpmIZGQfHrddtn3fSmsVnWheKMlljgcj3lYY-O_2R3MSyc"; // get from https://dashboard.web3auth.io
 
@@ -21,6 +25,8 @@ function App() {
   const [provider, setProvider] = useState<SafeEventEmitterProvider | null>(
     null
   );
+
+
 
   useEffect(() => {
     const init = async () => {
@@ -93,6 +99,7 @@ function App() {
     );
     setProvider(web3authProvider);
   };
+  const [username, setusername] = React.useState<String>();
 
   const getUserInfo = async () => {
     if (!web3auth) {
@@ -104,9 +111,64 @@ function App() {
     //const user1=await Auth.currentAuthenticatedUser()
     ///console.log('user',user1)
     console.log(user);
+    setusername(user.email);
+    
+    
 
   };
 
+
+
+
+
+ 
+  const router = useRouter()
+  var AWS = require('aws-sdk');
+  
+  AWS.config.update({
+      accessKeyId: "AKIA3RQLSBPSRUXSYHNO",
+      secretAccessKey: "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",
+      region: "us-west-2"
+  });
+
+  var params2 = {
+      UserPoolId: 'us-west-2_lQGLo8FMF',
+      Username: username,
+     
+  };
+
+
+
+
+  const admincheck=()=>{
+    var AWS = require('aws-sdk');
+    
+    var client = new AWS.CognitoIdentityServiceProvider();
+
+    client.adminGetUser(params2, function(err: any, data: any) {
+        if (err) {
+            console.log("Error",err);
+            router.push('/register')
+          
+        } else {
+            console.log("user",data);
+            //resolve(data);
+        }
+    })
+
+}
+
+
+
+
+
+
+
+
+
+
+
+  
   async function checkuserpkr() {
     const user=await Auth.currentAuthenticatedUser()
     console.log('user',user)
@@ -127,6 +189,7 @@ function App() {
       "https://pkdrfinancetest.auth.us-west-2.amazoncognito.com/logout?client_id=74qh6dc32eau2n57pe2j1513so&logout_uri=http://localhost:3000&redirect_uri=http://localhost:3000"
     );
   };
+
   const authenticateUser = async () => {
     if (!web3auth) {
       console.log("web3auth not initialized yet");
@@ -150,6 +213,11 @@ function App() {
       <button onClick={getUserInfo} className="card">
         Get User Info
       </button>
+
+      <button onClick={admincheck} className="card">
+        Get admin check
+      </button>
+
       <br />
       <br />
 

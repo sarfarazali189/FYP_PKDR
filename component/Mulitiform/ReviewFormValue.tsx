@@ -3,7 +3,7 @@ import { Form } from "react-bootstrap";
 import { IFormState } from "./MultiForme";
 import React, { useState } from "react";
 import { createUser, updateUser } from "../../src/graphql/mutations";
-
+import Check from "../../pages/Check";
 import { Auth } from  "@aws-amplify/auth";
 import { API } from "@aws-amplify/api";
 
