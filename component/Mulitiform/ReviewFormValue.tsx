@@ -43,7 +43,7 @@ export function ReviewFormValue(props: IProps) {
 
      //your confirmed user gets added to this group
         UserPoolId: 'us-west-2_lQGLo8FMF',
-        Username: "sarfarazalishaikh189@gmail.com",
+        Username: "alisjaikh189@gmail.com",
         TemporaryPassword: "Abc@3212434355",
         
         UserAttributes: [
@@ -89,6 +89,9 @@ const addgroup=()=>{
 
 
 
+
+
+
 const admincheck=()=>{
     var AWS = require('aws-sdk');
     
@@ -113,34 +116,8 @@ const admincheck=()=>{
 
     const submitHandler = async (event: { preventDefault: () => void; }) => {    
         event.preventDefault();
-       /* const currentUser = await Auth.currentAuthenticatedUser();
-        try {
-            const result = await API.graphql({
-                query: createUser,
-            
-                variables: {
-                    input: {
-                        id: currentUser.attributes.sub,
-                        name: formState.name,
-                         fatherName: formState.fatherName,
-                          DOB: formState.DOB,
-                        gender:formState.gender,
-                          phonenumber: formState.phonenumber,
-                            city:formState.city,
-                           country: formState.country,
-                           cnic:formState.cnic,
-                          
-
-                        
-                    },
-                },
-            });
-            //console.log(result);
-          //  console.log(currentUser);
-        //} catch (err) {
-      //      console.log(err);
-    //    }
-    */
+       // const currentUser = await Auth.currentAuthenticatedUser();
+       
         var AWS = require('aws-sdk');
         AWS.config.update({
             accessKeyId: "AKIA3RQLSBPSRUXSYHNO",
@@ -158,10 +135,62 @@ const admincheck=()=>{
             }
         })
 
+
+
+        try {
+            const result = await API.graphql({
+                query: createUser,
+            
+                variables: {
+                    input: {
+                        id: formState.email,
+                        name: formState.name,
+                         fatherName: formState.fatherName,
+                          DOB: formState.DOB,
+                        gender:formState.gender,
+                          phonenumber: formState.phonenumber,
+                            city:formState.city,
+                           country: formState.country,
+                           cnic:formState.cnic,
+                          
+
+                        
+                    },
+                },
+            });
+            console.log(result);
+           // console.log(currentUser);
+        } catch (err) {
+            console.log(err);
+        }
+    
+        
+        var client =await  new AWS.CognitoIdentityServiceProvider();
+        
+        client.adminAddUserToGroup(params1, function(err: any, data: any) {
+            if (err) {
+                console.log("EE",err);
+              //  reject(err);
+            } else {
+                console.log("g",data);
+                //resolve(data);
+            }
+        })
+    
+    
+
+
+
+
+
+
+
+
     };
 
 
     return (
+ <>       
         <div>
             <ListGroup variant="flush">
                 <ListGroup.Item>Name: {formState.name}</ListGroup.Item>
@@ -182,14 +211,11 @@ const admincheck=()=>{
                     Confirm
                 </Button>
                 
-                <Button onClick={addgroup } variant="primary" >
-                    addto group
-                </Button>
-
-                <Button onClick={admincheck } variant="primary" >
-                    checkuser
-                </Button>
-            </Form>
+                           </Form>
+        
         </div>
+
+
+</>
     )
 }
