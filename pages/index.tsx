@@ -1,11 +1,7 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import Image from 'next/image'
-import Link from 'next/link'
 import Amplify from "@aws-amplify/core";
-import {  Auth } from 'aws-amplify';
 import { CognitoHostedUIIdentityProvider } from '@aws-amplify/auth';
-// import styles from '../styles/Home.module.css'
 import App from '../component/aws-cognito-login/App'
 import React, { useEffect, useState } from 'react';
 
@@ -17,11 +13,6 @@ Amplify.configure({ ...awsExports, ssr: true });
 
 
 const Home: NextPage = () => {
- async function checkuser() {
-    const user=await Auth.currentAuthenticatedUser()
-    console.log('user',user)
-    
- }
 
   return (
     <div >

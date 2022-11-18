@@ -4,7 +4,7 @@ import { Web3Auth } from "@web3auth/web3auth";
 import Link from 'next/link'
 import { Auth } from  "@aws-amplify/auth";
 import * as React from 'react';
-import Check from "../../pages/Check";
+//import Check from "../../pages/Check";
 import { useRouter } from 'next/router'
 
 import {
@@ -13,10 +13,7 @@ import {
   SafeEventEmitterProvider,
 } from "@web3auth/base";
 import { OpenloginAdapter } from "@web3auth/openlogin-adapter";
-
-
 import { polygonMumbaiPRC } from "./RPC/polygon-mumbai";
-import { Email } from "aws-sdk/clients/codecommit";
 
 const clientId = "BAA4FWUihMGqfS8KcHdaDWZIPxqYtVPtgKBsU2V2KFpmIZGQfHrddtn3fSmsVnWheKMlljgcj3lYY-O_2R3MSyc"; // get from https://dashboard.web3auth.io
 
@@ -117,32 +114,23 @@ function App() {
 
   };
 
-
-
-
-
- 
   const router = useRouter()
   var AWS = require('aws-sdk');
-  
+
   AWS.config.update({
       accessKeyId: "AKIA3RQLSBPSRUXSYHNO",
       secretAccessKey: "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",
       region: "us-west-2"
   });
 
+
   var params2 = {
       UserPoolId: 'us-west-2_lQGLo8FMF',
-      Username: username,
+      Username: "alisjaikh189@gmail.com",
      
   };
 
-
-
-
   const admincheck=()=>{
-    var AWS = require('aws-sdk');
-    
     var client = new AWS.CognitoIdentityServiceProvider();
 
     client.adminGetUser(params2, function(err: any, data: any) {
@@ -159,22 +147,14 @@ function App() {
 }
 
 
-
-
-
-
-
-
-
-
-
+/*
   
   async function checkuserpkr() {
     const user=await Auth.currentAuthenticatedUser()
     console.log('user',user)
     
   }
-
+*/
 
   const logout = async () => {
     if (!web3auth) {
@@ -201,13 +181,6 @@ function App() {
 
 
 
-
-
-
-
-
-
-
   const loggedInView = (
     <div>
       <button onClick={getUserInfo} className="card">
@@ -221,12 +194,6 @@ function App() {
       <br />
       <br />
 
-< Link href="/register">
-
-  <a>Register</a>
-</Link>
-
-<button onClick={checkuserpkr}>checkuser</button>
 
       <br />
       <br />

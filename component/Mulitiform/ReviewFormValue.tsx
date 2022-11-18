@@ -3,11 +3,7 @@ import { Form } from "react-bootstrap";
 import { IFormState } from "./MultiForme";
 import React, { useState } from "react";
 import { createUser, updateUser } from "../../src/graphql/mutations";
-import Check from "../../pages/Check";
-import { Auth } from  "@aws-amplify/auth";
 import { API } from "@aws-amplify/api";
-
-import Link from 'next/link'
 import { CognitoIdentityProviderClient, AddCustomAttributesCommand } from "@aws-sdk/client-cognito-identity-provider";
 
 
@@ -21,27 +17,10 @@ export function ReviewFormValue(props: IProps) {
 
     const onConfirm = () => {
         console.log('onConfirm', onConfirm);
-        // backend api call
-        // reset form
-    };
-
-
-
-    var params2 = {
-        UserPoolId: 'us-west-2_lQGLo8FMF',
-        Username: "sarfarazalihaikh189@gmail.com",
-       
-    };
-
-
-
-
+      };
 
 
     var params = {
-        
-
-     //your confirmed user gets added to this group
         UserPoolId: 'us-west-2_lQGLo8FMF',
         Username: "alisjaikh189@gmail.com",
         TemporaryPassword: "Abc@3212434355",
@@ -67,57 +46,10 @@ export function ReviewFormValue(props: IProps) {
        };
     
 
-       
-
-
-const addgroup=()=>{
-    var AWS = require('aws-sdk');
-    
-    var client = new AWS.CognitoIdentityServiceProvider();
-
-    client.adminAddUserToGroup(params1, function(err: any, data: any) {
-        if (err) {
-            console.log("EE",err);
-          //  reject(err);
-        } else {
-            console.log("g",data);
-            //resolve(data);
-        }
-    })
-
-}
-
-
-
-
-
-
-const admincheck=()=>{
-    var AWS = require('aws-sdk');
-    
-    var client = new AWS.CognitoIdentityServiceProvider();
-
-    client.adminGetUser(params2, function(err: any, data: any) {
-        if (err) {
-            console.log("Error",err);
-          //  reject(err);
-        } else {
-            console.log("user",data);
-            //resolve(data);
-        }
-    })
-
-}
-
-
-
-
-
 
     const submitHandler = async (event: { preventDefault: () => void; }) => {    
         event.preventDefault();
-       // const currentUser = await Auth.currentAuthenticatedUser();
-       
+
         var AWS = require('aws-sdk');
         AWS.config.update({
             accessKeyId: "AKIA3RQLSBPSRUXSYHNO",
@@ -177,13 +109,6 @@ const admincheck=()=>{
             }
         })
     
-    
-
-
-
-
-
-
 
 
     };
