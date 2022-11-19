@@ -14,16 +14,19 @@ interface IProps {
 
 export function ReviewFormValue(props: IProps) {
     const { formState, previousStep } = props;
-
-    const onConfirm = () => {
-        console.log('onConfirm', onConfirm);
-      };
-
-
+    const a=process.env. NEXT_PUBLIC_UserPoolId
+    const b=process.env. NEXT_PUBLIC_TemporaryPassword
+    const c=process.env. NEXT_PUBLIC_GroupName
+    const d=process.env.NEXT_PUBLIC_accessKeyId
+    const e=process.env.NEXT_PUBLIC_secretAccessKey
+    const f=process.env.NEXT_PUBLIC_region
+    
+ 
     var params = {
-        UserPoolId: 'us-west-2_lQGLo8FMF',
-        Username: "alisjaikh189@gmail.com",
-        TemporaryPassword: "Abc@3212434355",
+        UserPoolId: a,
+        Username: formState.email,
+        TemporaryPassword: b,
+        
         
         UserAttributes: [
           {
@@ -39,9 +42,10 @@ export function ReviewFormValue(props: IProps) {
     };
     
     var params1 = {
-           UserPoolId: 'us-west-2_lQGLo8FMF',
-           Username: formState.email,
-           GroupName: 'Users',
+        UserPoolId: a,
+        Username: formState.email,
+        GroupName: c
+    
        
        };
     
@@ -52,9 +56,10 @@ export function ReviewFormValue(props: IProps) {
 
         var AWS = require('aws-sdk');
         AWS.config.update({
-            accessKeyId: "AKIA3RQLSBPSRUXSYHNO",
-            secretAccessKey: "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",
-            region: "us-west-2"
+            accessKeyId: d,
+            secretAccessKey:e,
+            region: f
+            
         });
         var client = new AWS.CognitoIdentityServiceProvider();
         client.adminCreateUser(params, function(err: any, data: any) {

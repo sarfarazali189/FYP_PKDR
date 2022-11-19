@@ -2,16 +2,12 @@ import { withSSRContext } from 'aws-amplify'
 import {  Auth } from 'aws-amplify';
 
 import { Cache } from 'aws-amplify';
-import Check from "./Check"
 function Protect({ authenticated, username }) {
-async function checktoken(){
-  Auth.currentSession().then(res=>{
-    let accessToken = res.getAccessToken()
-    let jwt = accessToken.getJwtToken()
-    console.log(`myAccessToken: ${JSON.stringify(accessToken)}`)
-    console.log(`myJwt: ${jwt}`);
-  })
 
+ 
+async function checktoken(){
+ 
+ 
 }
 
 

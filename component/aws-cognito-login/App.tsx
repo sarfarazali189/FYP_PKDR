@@ -22,6 +22,8 @@ function App() {
   const [provider, setProvider] = useState<SafeEventEmitterProvider | null>(
     null
   );
+  const [username, setusername] = React.useState<string>();
+
 
 
 
@@ -73,7 +75,15 @@ function App() {
       }
     };
 
+    
+    
+    
+    
+    
+    
     init();
+    
+
   }, []);
 
   const login = async () => {
@@ -94,10 +104,15 @@ function App() {
         },
       }
     );
-    setProvider(web3authProvider);
-  };
-  const [username, setusername] = React.useState<String>();
 
+    
+    
+    
+    setProvider(web3authProvider);
+
+
+  };
+  
   const getUserInfo = async () => {
     if (!web3auth) {
       console.log("web3auth not initialized yet");
@@ -105,10 +120,9 @@ function App() {
     }
 
     const user = await web3auth.getUserInfo();
-    //const user1=await Auth.currentAuthenticatedUser()
-    ///console.log('user',user1)
     console.log(user);
     setusername(user.email);
+    console.log("usermail",username);
     
     
 
@@ -126,7 +140,7 @@ function App() {
 
   var params2 = {
       UserPoolId: 'us-west-2_lQGLo8FMF',
-      Username: "alisjaikh189@gmail.com",
+      Username: username,
      
   };
 
@@ -146,23 +160,13 @@ function App() {
 
 }
 
-
-/*
-  
-  async function checkuserpkr() {
-    const user=await Auth.currentAuthenticatedUser()
-    console.log('user',user)
-    
-  }
-*/
-
   const logout = async () => {
     if (!web3auth) {
       console.log("web3auth not initialized yet");
       return;
     }
     await web3auth.logout();
-
+    
     setProvider(null);
     const windowFeatures = "left=auto,top=auto,width=auto,height=auto";
     window.open(
