@@ -128,19 +128,25 @@ function App() {
 
   };
 
+  const a=process.env. NEXT_PUBLIC_UserPoolId
+  const d=process.env.NEXT_PUBLIC_accessKeyId
+  const e=process.env.NEXT_PUBLIC_secretAccessKey
+  const f=process.env.NEXT_PUBLIC_region
+
+
   const router = useRouter()
   var AWS = require('aws-sdk');
 
   AWS.config.update({
-      accessKeyId: "AKIA3RQLSBPSRUXSYHNO",
-      secretAccessKey: "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",
-      region: "us-west-2"
+      accessKeyId: d,
+      secretAccessKey: e,
+      region: f
   });
 
 
   var params2 = {
-      UserPoolId: 'us-west-2_lQGLo8FMF',
-      Username: username,
+      UserPoolId: a,
+      Username: "alisjaikh189@gmail.com"
      
   };
 
