@@ -14,6 +14,7 @@ import {
 } from "@web3auth/base";
 import { OpenloginAdapter } from "@web3auth/openlogin-adapter";
 import { polygonMumbaiPRC } from "./RPC/polygon-mumbai";
+import { GetServerSideProps } from "next";
 
 const clientId = "BAA4FWUihMGqfS8KcHdaDWZIPxqYtVPtgKBsU2V2KFpmIZGQfHrddtn3fSmsVnWheKMlljgcj3lYY-O_2R3MSyc"; // get from https://dashboard.web3auth.io
 
@@ -75,18 +76,14 @@ function App() {
       }
     };
 
-    
-    
-    
-    
-    
-    
     init();
-    
 
   }, []);
 
+
+
   const login = async () => {
+
     if (!web3auth) {
       console.log("web3auth not initialized yet");
       return;
@@ -103,16 +100,26 @@ function App() {
           scope: "email profile openid",
         },
       }
+
     );
 
     
-    
+
     
     setProvider(web3authProvider);
 
+    
+  
 
   };
+
+
+
+
+
   
+
+
   const getUserInfo = async () => {
     if (!web3auth) {
       console.log("web3auth not initialized yet");
@@ -123,8 +130,6 @@ function App() {
     console.log(user);
     setusername(user.email);
     console.log("usermail",username);
-    
-    
 
   };
 
@@ -149,7 +154,6 @@ function App() {
       Username: "alisjaikh189@gmail.com"
      
   };
-
   const admincheck=()=>{
     var client = new AWS.CognitoIdentityServiceProvider();
 
@@ -222,6 +226,9 @@ function App() {
     </button>
   );
 
+
+
+  
   return (
     <div className="container">
       <br />
@@ -233,3 +240,7 @@ function App() {
 }
 
 export default App;
+
+
+
+

@@ -5,118 +5,39 @@ import React, { useState } from "react";
 import { createUser, updateUser } from "../../src/graphql/mutations";
 import { API } from "@aws-amplify/api";
 import { CognitoIdentityProviderClient, AddCustomAttributesCommand } from "@aws-sdk/client-cognito-identity-provider";
-
-
+import { GetServerSideProps } from "next";
+import { useRouter } from 'next/router'
+import Protect from "../../pages/Protect";
 interface IProps {
     formState: IFormState;
     previousStep: () => void;
 }
 
+
+
+
+
 export function ReviewFormValue(props: IProps) {
     const { formState, previousStep } = props;
-    const a=process.env. NEXT_PUBLIC_UserPoolId
-    const b=process.env. NEXT_PUBLIC_TemporaryPassword
-    const c=process.env. NEXT_PUBLIC_GroupName
-    const d=process.env.NEXT_PUBLIC_accessKeyId
-    const e=process.env.NEXT_PUBLIC_secretAccessKey
-    const f=process.env.NEXT_PUBLIC_region
-    
- 
-    var params = {
-        UserPoolId: a,
-        Username: formState.email,
-        TemporaryPassword: b,
-        
-        
-        UserAttributes: [
-          {
-            Name: "email",
-            Value: formState.email
-          },
-          {
-            Name: "email_verified",
-            Value: "true"
-          }
-         
-        ]
-    };
-    
-    var params1 = {
-        UserPoolId: a,
-        Username: formState.email,
-        GroupName: c
-    
-       
-       };
-    
 
+const router = useRouter()        
+const Confirm=()=>{
+   
+console.log("r",formState)
+document.cookie = `email=${formState.email}`; 
+document.cookie = `cnic=${formState.cnic}`; 
 
-    const submitHandler = async (event: { preventDefault: () => void; }) => {    
-        event.preventDefault();
+document.cookie = `name=${formState.name}`; 
+document.cookie = `phonenumber=${formState.phonenumber}`; 
+document.cookie = `DOB=${formState.DOB}`; 
+document.cookie = `city=${formState.city}`;          
+document.cookie = `country=${formState.country}`; 
+document.cookie = `fathername=${formState.fatherName}`; 
+document.cookie = `gender=${formState.gender}`; 
+router.push("/Protect")
 
-        var AWS = require('aws-sdk');
-        AWS.config.update({
-            accessKeyId: d,
-            secretAccessKey:e,
-            region: f
-            
-        });
-        var client = new AWS.CognitoIdentityServiceProvider();
-        client.adminCreateUser(params, function(err: any, data: any) {
-            if (err) {
-                console.log("EE",err);
-              //  reject(err);
-            } else {
-                console.log("DDD",data);
-                //resolve(data);
-            }
-        })
+}
 
-
-
-        try {
-            const result = await API.graphql({
-                query: createUser,
-            
-                variables: {
-                    input: {
-                        id: formState.email,
-                        name: formState.name,
-                         fatherName: formState.fatherName,
-                          DOB: formState.DOB,
-                        gender:formState.gender,
-                          phonenumber: formState.phonenumber,
-                            city:formState.city,
-                           country: formState.country,
-                           cnic:formState.cnic,
-                          
-
-                        
-                    },
-                },
-            });
-            console.log(result);
-           // console.log(currentUser);
-        } catch (err) {
-            console.log(err);
-        }
-    
-        
-        var client =await  new AWS.CognitoIdentityServiceProvider();
-        
-        client.adminAddUserToGroup(params1, function(err: any, data: any) {
-            if (err) {
-                console.log("EE",err);
-              //  reject(err);
-            } else {
-                console.log("g",data);
-                //resolve(data);
-            }
-        })
-    
-
-
-    };
 
 
     return (
@@ -137,7 +58,7 @@ export function ReviewFormValue(props: IProps) {
                 <Button className="mr-4 my-3" onClick={previousStep} variant="primary" type="submit">
                     Previous
                 </Button>
-                <Button onClick={submitHandler } variant="primary" >
+                <Button onClick={Confirm } variant="primary" >
                     Confirm
                 </Button>
                 
@@ -149,3 +70,67 @@ export function ReviewFormValue(props: IProps) {
 </>
     )
 }
+
+/*
+
+export const getServerSideProps: GetServerSideProps = async () => {
+
+    const a=process.env.NEXT_PUBLIC_UserPoolId
+    const e=process.env.NEXT_PUBLIC_secretAccessKey
+    const f=process.env.NEXT_PUBLIC_region
+    const b=process.env. NEXT_PUBLIC_TemporaryPassword
+    const c=process.env. NEXT_PUBLIC_GroupName
+    const d=process.env.NEXT_PUBLIC_accessKeyId
+  
+    console.log('user',a)
+  
+    var params = {
+        UserPoolId: a,
+        Username: "alisjaikh189@gmail.com",
+        TemporaryPassword: b,
+        
+        
+        UserAttributes: [
+          {
+            Name: "email",
+            Value: "alisjaikh189@gmail.com",
+          },
+
+          {
+            Name: "email_verified",
+            Value: "true"
+          }
+         
+        ]
+    };
+    
+  
+  
+       var AWS = require('aws-sdk');
+       AWS.config.update({
+           accessKeyId: d,
+           secretAccessKey:e,
+           region: f
+           
+       });
+       var client = new AWS.CognitoIdentityServiceProvider();
+       client.adminCreateUser(params, function(err: any, data: any) {
+           if (err) {
+               console.log("EE",err);
+             //  reject(err);
+           } else {
+               console.log("DDD",data);
+               //resolve(data);
+           }
+       })
+  
+  
+  
+  
+  return{
+    props:{}
+  }
+      
+  }
+
+*/
