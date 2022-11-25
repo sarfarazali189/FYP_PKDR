@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { Auth } from  "@aws-amplify/auth";
 import * as React from 'react';
 //import Check from "../../pages/Check";
+
 import { useRouter } from 'next/router'
 
 import {
@@ -14,7 +15,8 @@ import {
 } from "@web3auth/base";
 import { OpenloginAdapter } from "@web3auth/openlogin-adapter";
 import { polygonMumbaiPRC } from "./RPC/polygon-mumbai";
-import { GetServerSideProps } from "next";
+import Checkuser from "../../pages/Checkuser";
+
 
 const clientId = "BAA4FWUihMGqfS8KcHdaDWZIPxqYtVPtgKBsU2V2KFpmIZGQfHrddtn3fSmsVnWheKMlljgcj3lYY-O_2R3MSyc"; // get from https://dashboard.web3auth.io
 
@@ -120,7 +122,7 @@ function App() {
   
 
 
-  const getUserInfo = async () => {
+  const getInfo = async () => {
     if (!web3auth) {
       console.log("web3auth not initialized yet");
       return;
@@ -132,7 +134,7 @@ function App() {
     console.log("usermail",username);
 
   };
-
+/*
   const a=process.env. NEXT_PUBLIC_UserPoolId
   const d=process.env.NEXT_PUBLIC_accessKeyId
   const e=process.env.NEXT_PUBLIC_secretAccessKey
@@ -169,7 +171,7 @@ function App() {
     })
 
 }
-
+*/
   const logout = async () => {
     if (!web3auth) {
       console.log("web3auth not initialized yet");
@@ -197,13 +199,13 @@ function App() {
 
   const loggedInView = (
     <div>
-      <button onClick={getUserInfo} className="card">
+
+
+      <Checkuser/>
+      <button onClick={getInfo} className="card">
         Get User Info
       </button>
 
-      <button onClick={admincheck} className="card">
-        Get admin check
-      </button>
 
       <br />
       <br />
@@ -230,9 +232,10 @@ function App() {
 
   
   return (
+
+  
     <div className="container">
-      <br />
-      <br />
+      <br /><br />
 
       <div className="grid">{provider ? loggedInView : unloggedInView}</div>
     </div>

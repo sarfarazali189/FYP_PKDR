@@ -9,6 +9,7 @@ import awsExports from "../src/aws-exports";
 
 
 import awsconfig from '../src/aws-exports'
+import Checkuser from './Checkuser';
 Amplify.configure({ ...awsExports, ssr: true });
 
 
@@ -23,6 +24,7 @@ const Home: NextPage = () => {
       </Head>
 <b><h3 >Welcome To PKDRFINANCE</h3></b>
      <App />
+
 
     
     </div>
