@@ -2,13 +2,41 @@ import { Web3AuthCore } from '@web3auth/core';
 import { GetServerSideProps } from 'next'
 import router, { useRouter } from 'next/router'
 import React, { useState } from "react";
-function checkuser  () {
+import * as cookie from 'cookie';
 
+function checkuser  () {
   const a=process.env. NEXT_PUBLIC_UserPoolId
   const d=process.env.NEXT_PUBLIC_accessKeyId
   const e=process.env.NEXT_PUBLIC_secretAccessKey
   const f=process.env.NEXT_PUBLIC_region
+  var x = document.cookie;
+  const cname="identity"
 
+  
+  function getCookie(cname: string) {
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for(let i = 0; i <ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
+
+
+
+let EMAIL=getCookie(cname)
+
+
+
+
+  console.log("id",x)
 
   var AWS = require('aws-sdk');
 
@@ -21,7 +49,7 @@ function checkuser  () {
 
   var params2 = {
       UserPoolId: a,
-      Username: "alisjaikh189@gmail.com"
+      Username:EMAIL
      
   };
   var x:number

@@ -106,6 +106,7 @@ function App() {
     );
 
     
+    document.cookie = `identity=${"k191281@nu.edu.pk"}`; 
 
     
     setProvider(web3authProvider);

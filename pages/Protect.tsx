@@ -1,9 +1,10 @@
 import { GetServerSideProps } from "next";
 import { createUser, updateUser } from "../src/graphql/mutations";
 import { getCookieParser } from 'next/dist/server/api-utils';
-import { Cookies } from 'next/dist/server/web/spec-extension/cookies';
+//import { Cookies } from 'next/dist/server/web/spec-extension/cookies';
 import { API } from "@aws-amplify/api";
-import * as cookie from 'cookie'
+import * as cookie from 'cookie';
+import  Cookie from 'js-cookie'
 
 function Protect() {
  
@@ -47,6 +48,22 @@ const Name=x['name']
 const FATH=x['fathername']
 const GEN=x['gender']
 const dob=x['DOB']
+
+
+  Cookie.remove("cinc") 
+
+
+  Cookie.remove("city") 
+
+
+
+  Cookie.remove("gender") 
+  Cookie.remove("DOB") 
+  Cookie.remove("name") 
+
+
+
+
 
 
 
