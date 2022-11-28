@@ -21,7 +21,7 @@
     "aws-amplify": "^4.3.43",
     "aws-amplify-react": "^5.1.43",
     "aws-sdk": "^2.1253.0",
-    "bootstrap": "^5.2.2",
+    "bootstrap": "5.2.3",
     "ethers": "^5.7.0",
     "js-cookie": "^3.0.1",
     "next": "12.2.5",

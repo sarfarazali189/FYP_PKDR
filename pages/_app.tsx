@@ -1,5 +1,6 @@
+import 'bootstrap/dist/css/bootstrap.css'
 import '../styles/globals.css'
-import React from 'react';
+import React, { useEffect } from 'react';
 import  { withSSRContext } from 'aws-amplify';
 import awsconfig from '../src/aws-exports';
 import Navbar from '../component/Navbar';
@@ -15,11 +16,15 @@ import Amplify from 'aws-amplify';
 Amplify.configure({ ...awsExports, ssr: true });;
 Amplify.configure(awsconfig);
 Auth.configure(awsconfig);
+import Head from "next/head";
 
-import 'bootstrap/dist/css/bootstrap.css'
 import type { AppProps } from 'next/app'
 
 function MyApp({ Component, pageProps }: AppProps) {
+
+  useEffect(() => {
+    typeof document !== undefined ? require('bootstrap/dist/js/bootstrap') : null
+  }, []);
   return(
     <><Navbar /><Component {...pageProps} /></>
   )

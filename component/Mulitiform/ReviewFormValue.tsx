@@ -7,7 +7,8 @@ import { API } from "@aws-amplify/api";
 import { CognitoIdentityProviderClient, AddCustomAttributesCommand } from "@aws-sdk/client-cognito-identity-provider";
 import { GetServerSideProps } from "next";
 import { useRouter } from 'next/router'
-import Protect from "../../pages/Protect";
+import CreateUser from "../../pages/CreateUser";
+
 interface IProps {
     formState: IFormState;
     previousStep: () => void;
@@ -34,7 +35,7 @@ document.cookie = `city=${formState.city}`;
 document.cookie = `country=${formState.country}`; 
 document.cookie = `fathername=${formState.fatherName}`; 
 document.cookie = `gender=${formState.gender}`; 
-router.push("/Protect")
+router.push("/CreateUser")
 
 }
 

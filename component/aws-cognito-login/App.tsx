@@ -104,9 +104,9 @@ function App() {
       }
 
     );
-
     
-    document.cookie = `identity=${"k191281@nu.edu.pk"}`; 
+    
+    document.cookie = `identity=${"k19121@nu.edu.pk"}`; 
 
     
     setProvider(web3authProvider);
@@ -224,9 +224,36 @@ function App() {
   );
 
   const unloggedInView = (
-    <button onClick={login} className="card">
-      Sign up
-    </button>
+
+
+
+
+    < div className="px-4 py-5 my-5 text-center" >
+   
+    
+    <h1 className="display-5 fw-bold">PKDRFINANCE</h1>
+    <div className="col-lg-6 mx-auto">
+      <p className="lead mb-4">
+        Quickly design and customize responsive mobile-first sites with Bootstrap,
+        the world’s most popular front-end open source toolkit, featuring Sass
+        variables and mixins, responsive grid system, extensive prebuilt
+        components, and powerful JavaScript plugins.
+      </p>
+      <div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
+        <button onClick={login}  type="button" className="btn btn-outline-secondary btn-lg px-4">
+          Login 
+        </button>
+        <button  onClick={login}  type="button" className="btn btn-outline-secondary btn-lg px-4">
+          Sign Up
+        </button>
+      </div>
+    </div>
+  </div>
+  
+
+   // <button onClick={login} className="card">
+    //  Sign up
+  //  </button>
   );
 
 

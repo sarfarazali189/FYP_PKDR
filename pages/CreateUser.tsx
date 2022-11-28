@@ -5,15 +5,30 @@ import { getCookieParser } from 'next/dist/server/api-utils';
 import { API } from "@aws-amplify/api";
 import * as cookie from 'cookie';
 import  Cookie from 'js-cookie'
+import { useRouter } from 'next/router'
+function CreateUser() {
 
-function Protect() {
- 
+  const router = useRouter()   
+
+  const Redirect = async () => {
+    
+   // router.push("/")
+    
+  }
+
 
 
 
     return(
       <>
-    <p> thanks for registeration </p>
+    
+    < div className="px-4 py-5 my-5 text-center" >
+    <h1 className="display-5 fw-bold">Thanks for Registeration </h1>
+    </div>
+
+    <button onClick={Redirect}  type="button" className="btn btn-outline-secondary btn-lg px-4">
+          GO Back  LOgin 
+        </button>
       </>
       
     )
@@ -21,7 +36,7 @@ function Protect() {
 
 
 
-export default Protect
+export default  CreateUser
 
 
 export const getServerSideProps: any = async (context: { req: { headers: { cookie: string; }; }; }) => {

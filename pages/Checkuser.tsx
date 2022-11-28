@@ -9,10 +9,11 @@ function checkuser  () {
   const d=process.env.NEXT_PUBLIC_accessKeyId
   const e=process.env.NEXT_PUBLIC_secretAccessKey
   const f=process.env.NEXT_PUBLIC_region
-  var x = document.cookie;
+ // var x = document.cookie;
   const cname="identity"
 
-  
+
+
   function getCookie(cname: string) {
     let name = cname + "=";
     let decodedCookie = decodeURIComponent(document.cookie);
@@ -36,7 +37,7 @@ let EMAIL=getCookie(cname)
 
 
 
-  console.log("id",x)
+//  console.log("id",x)
 
   var AWS = require('aws-sdk');
 
