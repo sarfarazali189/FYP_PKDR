@@ -12,10 +12,13 @@ interface IProps {
 export function Form2(props: IProps) {
     const { nextStep, formState, handleChange, previousStep } = props;
     return (
+        <>
+
+        <div></div>
         <div>
             <Form>
                 <Form.Group controlId="formGroupEmail">
-                    <Form.Label>Email</Form.Label>
+                    <Form.Label className="block text-gray-700 text-sm font-bold mb-2">Email</Form.Label>
                     <Form.Control
                         value={formState.email}
                         onChange={(event) => handleChange(event.target.value, 'email')}
@@ -23,7 +26,7 @@ export function Form2(props: IProps) {
                     />
                 </Form.Group>
                 <Form.Group controlId="formGroupPassword">
-                    <Form.Label>Phone number</Form.Label>
+                    <Form.Label className="block text-gray-700 text-sm font-bold mb-2">Phone number</Form.Label>
                     <Form.Control
                         value={formState.phonenumber}
                         onChange={(event) => handleChange(event.target.value, 'phonenumber')}
@@ -32,20 +35,21 @@ export function Form2(props: IProps) {
                 </Form.Group>
                 
                 <Form.Group controlId="formGroupPassword">
-                    <Form.Label>CNIC number</Form.Label>
+                    <Form.Label className="block text-gray-700 text-sm font-bold mb-2">CNIC number</Form.Label>
                     <Form.Control
                         value={formState.cnic}
                         onChange={(event) => handleChange(event.target.value, 'cnic')}
                         type="number"
                     />
                 </Form.Group>
-                <Form.Group>
-                    <Button onClick={previousStep} type="submit">Previous</Button>
-                </Form.Group>
-                <Form.Group>
-                    <Button onClick={nextStep} type="submit">Continue</Button>
-                </Form.Group>
+                <div  className="inline-flex  mb-4 m-3 ">
+                    <Button onClick={previousStep}  className="btn btn-outline-secondary btn-lg px-4"  type="submit">Previous</Button>
+            
+                
+                    <Button onClick={nextStep}  className="btn btn-outline-secondary btn-lg px-4" type="submit">Continue</Button>
+                    </div>
             </Form>
         </div>
+        </>
     )
 }

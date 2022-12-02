@@ -5,7 +5,10 @@ import { getCookieParser } from 'next/dist/server/api-utils';
 import { API } from "@aws-amplify/api";
 import * as cookie from 'cookie';
 import  Cookie from 'js-cookie'
-import { useRouter } from 'next/router'
+import router, { useRouter } from 'next/router'
+import { Error1 } from "../component/Errors/Error1";
+import Error2 from "../component/Errors/Error2";
+import Error3 from "../component/Errors/Error3";
 function CreateUser() {
 
   const router = useRouter()   
@@ -16,8 +19,23 @@ function CreateUser() {
     
   }
 
+  /*
+  const logout = async () => {
+    if (!web3auth) {
+      console.log("web3auth not initialized yet");
+      return;
+    }
+    await web3auth.logout();
+    
+    setProvider(null);
+    const windowFeatures = "left=auto,top=auto,width=auto,height=auto";
+    window.open(
+      "https://pkdrfinancetest.auth.us-west-2.amazoncognito.com/logout?client_id=74qh6dc32eau2n57pe2j1513so&logout_uri=http://localhost:3000&redirect_uri=http://localhost:3000"
+    );
+  };
 
 
+*/
 
     return(
       <>
@@ -27,7 +45,7 @@ function CreateUser() {
     </div>
 
     <button onClick={Redirect}  type="button" className="btn btn-outline-secondary btn-lg px-4">
-          GO Back  LOgin 
+          Signin Now 
         </button>
       </>
       
@@ -64,17 +82,6 @@ const FATH=x['fathername']
 const GEN=x['gender']
 const dob=x['DOB']
 
-
-  Cookie.remove("cinc") 
-
-
-  Cookie.remove("city") 
-
-
-
-  Cookie.remove("gender") 
-  Cookie.remove("DOB") 
-  Cookie.remove("name") 
 
 
 
@@ -118,7 +125,7 @@ const dob=x['DOB']
            //  reject(err);
          } else {
              console.log("DDD",data);
-             //resolve(data);
+             <Error2/>
          }
      })
 
@@ -149,6 +156,7 @@ const dob=x['DOB']
      // console.log(currentUser);
   } catch (err) {
       console.log(err);
+      <Error1/>
   }
 
 
@@ -178,6 +186,7 @@ const dob=x['DOB']
          } else {
              console.log("g",data);
              //resolve(data);
+             <Error3/>
          }
      })
 

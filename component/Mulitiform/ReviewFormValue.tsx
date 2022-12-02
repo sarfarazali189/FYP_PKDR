@@ -56,10 +56,10 @@ router.push("/CreateUser")
                 <ListGroup.Item>Country: {formState.country}</ListGroup.Item>
             </ListGroup>
             <Form>
-                <Button className="mr-4 my-3" onClick={previousStep} variant="primary" type="submit">
+                <Button onClick={previousStep}  className="btn btn-outline-secondary btn-lg px-4" variant="primary" type="submit">
                     Previous
                 </Button>
-                <Button onClick={Confirm } variant="primary" >
+                <Button onClick={Confirm } variant="primary"    className="btn btn-outline-secondary btn-lg px-4">
                     Confirm
                 </Button>
                 

@@ -3,6 +3,7 @@ import { GetServerSideProps } from 'next'
 import router, { useRouter } from 'next/router'
 import React, { useState } from "react";
 import * as cookie from 'cookie';
+import Cookies from 'js-cookie';
 
 function checkuser  () {
   const a=process.env. NEXT_PUBLIC_UserPoolId
@@ -53,6 +54,12 @@ let EMAIL=getCookie(cname)
       Username:EMAIL
      
   };
+
+  localStorage. removeItem(cname);
+ 
+
+
+
   var x:number
     var client = new AWS.CognitoIdentityServiceProvider();
     
@@ -60,10 +67,14 @@ let EMAIL=getCookie(cname)
       if (err) {
         console.log("Error",err);
         router.push('/register')
+        
+
       
     } else {
         console.log("user",data);
         //resolve(data);
+      
+
     }
 
     }) 

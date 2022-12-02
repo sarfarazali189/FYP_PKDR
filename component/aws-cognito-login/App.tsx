@@ -16,6 +16,7 @@ import {
 import { OpenloginAdapter } from "@web3auth/openlogin-adapter";
 import { polygonMumbaiPRC } from "./RPC/polygon-mumbai";
 import Checkuser from "../../pages/Checkuser";
+import Cookies from "js-cookie";
 
 
 const clientId = "BAA4FWUihMGqfS8KcHdaDWZIPxqYtVPtgKBsU2V2KFpmIZGQfHrddtn3fSmsVnWheKMlljgcj3lYY-O_2R3MSyc"; // get from https://dashboard.web3auth.io
@@ -106,7 +107,7 @@ function App() {
     );
     
     
-    document.cookie = `identity=${"k19121@nu.edu.pk"}`; 
+    document.cookie = `identity=${"k191280@nu.edu.pk"}`; 
 
     
     setProvider(web3authProvider);
@@ -181,6 +182,9 @@ function App() {
     await web3auth.logout();
     
     setProvider(null);
+    const cname="identity"
+
+    Cookies.remove(cname);
     const windowFeatures = "left=auto,top=auto,width=auto,height=auto";
     window.open(
       "https://pkdrfinancetest.auth.us-west-2.amazoncognito.com/logout?client_id=74qh6dc32eau2n57pe2j1513so&logout_uri=http://localhost:3000&redirect_uri=http://localhost:3000"
@@ -203,7 +207,7 @@ function App() {
 
 
       <Checkuser/>
-      <button onClick={getInfo} className="card">
+      <button onClick={getInfo} type="button" className="btn btn-outline-secondary btn-lg px-4" >
         Get User Info
       </button>
 
@@ -214,7 +218,7 @@ function App() {
 
       <br />
       <br />
-      <button onClick={logout} className="card">
+      <button onClick={logout} type="button" className="btn btn-outline-secondary btn-lg px-4">
         Log Out
       </button>
       <div id="console" style={{ whiteSpace: "pre-line" }}>

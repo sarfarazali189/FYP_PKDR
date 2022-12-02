@@ -43,11 +43,15 @@ export function Form3(props: IProps) {
                         type="text"
                     />
                 
-                    <Button onClick={previousStep} type="submit">Previous</Button>
+                    
                 </Form.Group>
-                <Form.Group>
-                    <Button onClick={nextStep} type="submit">Continue</Button>
-                </Form.Group>
+            
+                <div  className="inline-flex  mb-4 m-3 ">
+                    <Button onClick={previousStep}  className="btn btn-outline-secondary btn-lg px-4"  type="submit">Previous</Button>
+            
+                
+                    <Button onClick={nextStep}  className="btn btn-outline-secondary btn-lg px-4" type="submit">Continue</Button>
+                    </div>
             </Form>
         </div>
     )
