@@ -178,7 +178,6 @@ const dob=x['DOB']
 
 
      var client =await  new AWS.CognitoIdentityServiceProvider();
-        
      client.adminAddUserToGroup(params1, function(err: any, data: any) {
          if (err) {
              console.log("EE",err);

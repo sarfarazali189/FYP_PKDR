@@ -1,6 +1,9 @@
 import { Button } from "react-bootstrap";
 import { Form } from "react-bootstrap";
 import { IFormState } from "./MultiForme";
+import React, { useState } from 'react';
+
+
 
 interface IProps {
     nextStep: () => void;
