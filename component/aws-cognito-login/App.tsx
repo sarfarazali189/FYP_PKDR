@@ -107,10 +107,19 @@ function App() {
     );
     
     
-    document.cookie = `identity=${"k1910@nu.edu.pk"}`; 
+    document.cookie = `identity=${"k191305@nu.edu.pk"}`; 
+    localStorage.setItem("login","true")
 
     
     setProvider(web3authProvider);
+
+  //  const user = await web3auth.getUserInfo();
+    
+
+//  localStorage.setItem("login",user.idToken)
+
+    
+    
 
     
   
@@ -133,7 +142,7 @@ function App() {
     const user = await web3auth.getUserInfo();
     console.log(user);
     setusername(user.email);
-    console.log("usermail",username);
+//    console.log("usermail",username);
 
   };
 /*
@@ -183,8 +192,10 @@ function App() {
     
     setProvider(null);
     const cname="identity"
+    localStorage.setItem("login","false")
 
     Cookies.remove(cname);
+
     const windowFeatures = "left=auto,top=auto,width=auto,height=auto";
     window.open(
       "https://pkdrfinancetest.auth.us-west-2.amazoncognito.com/logout?client_id=74qh6dc32eau2n57pe2j1513so&logout_uri=http://localhost:3000&redirect_uri=http://localhost:3000"

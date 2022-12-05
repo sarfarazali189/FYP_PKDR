@@ -9,10 +9,9 @@ import router, { useRouter } from 'next/router'
 import { Error1 } from "../component/Errors/Error1";
 import Error2 from "../component/Errors/Error2";
 import Error3 from "../component/Errors/Error3";
+
 function CreateUser() {
-
-  const router = useRouter()   
-
+  
   const Redirect = async () => {
     
    // router.push("/")
@@ -198,6 +197,10 @@ return{
     
 }
 
+
+function useEffect(arg0: () => void) {
+  throw new Error("Function not implemented.");
+}
 /*
 
 
