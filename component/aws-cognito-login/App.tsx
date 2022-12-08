@@ -27,6 +27,7 @@ function App() {
     null
   );
   const [username, setusername] = React.useState<string>();
+  
 
 
 
@@ -79,6 +80,9 @@ function App() {
       }
     };
 
+  
+
+
     init();
 
   }, []);
@@ -113,10 +117,10 @@ function App() {
     
     setProvider(web3authProvider);
 
-  //  const user = await web3auth.getUserInfo();
+ // const user = await web3auth.getUserInfo();
     
 
-//  localStorage.setItem("login",user.idToken)
+// localStorage.setItem("login",user.idToken)
 
     
     
@@ -232,14 +236,40 @@ function App() {
       <button onClick={logout} type="button" className="btn btn-outline-secondary btn-lg px-4">
         Log Out
       </button>
+      <br />
+      <br />
+
+
+      <br />
+      <br />
+      <br />
+      <br />
+
+
+      <br />
+      <br />
+      <br />
+      <br />
+
+
+      <br />
+      <br />
+      
+      
       <div id="console" style={{ whiteSpace: "pre-line" }}>
         <p style={{ whiteSpace: "pre-line" }}></p>
       </div>
+
+    <div> </div>
+
+    <div> </div>
+
+    <div> </div>
     </div>
+
   );
 
   const unloggedInView = (
-
 
 
 

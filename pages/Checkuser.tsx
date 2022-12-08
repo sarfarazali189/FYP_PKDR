@@ -9,16 +9,6 @@ import Cookies from 'js-cookie';
 function checkuser  () {
 
 
-  
-  const a=process.env. NEXT_PUBLIC_UserPoolId
-  const d=process.env.NEXT_PUBLIC_accessKeyId
-  const e=process.env.NEXT_PUBLIC_secretAccessKey
-  const f=process.env.NEXT_PUBLIC_region
- // var x = document.cookie;
-  const cname="identity"
-
-
-
   function getCookie(cname: string) {
     let name = cname + "=";
     let decodedCookie = decodeURIComponent(document.cookie);
@@ -37,9 +27,23 @@ function checkuser  () {
 
 
 
-let EMAIL=getCookie(cname)
-
-
+  const router=useRouter()
+  const login = typeof window !== 'undefined' ? localStorage.getItem('login') : null  
+   
+    if(login=="false"|| !login){
+      
+      typeof window !== 'undefined' && router.push("/Unauth")
+  
+    }
+  
+else{
+  
+  const a=process.env. NEXT_PUBLIC_UserPoolId
+  const d=process.env.NEXT_PUBLIC_accessKeyId
+  const e=process.env.NEXT_PUBLIC_secretAccessKey
+  const f=process.env.NEXT_PUBLIC_region
+ // var x = document.cookie;
+  const cname="identity"
 
 
 //  console.log("id",x)
@@ -51,6 +55,15 @@ let EMAIL=getCookie(cname)
       secretAccessKey: e,
       region: f
   });
+
+
+
+
+
+let EMAIL=getCookie(cname)
+
+
+
 
 
   var params2 = {
@@ -83,8 +96,8 @@ let EMAIL=getCookie(cname)
 
     }) 
 
-
-
+      
+  }
 return (
     <div> </div>
   )

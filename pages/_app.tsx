@@ -4,6 +4,7 @@ import React, { useEffect } from 'react';
 import  { withSSRContext } from 'aws-amplify';
 import awsconfig from '../src/aws-exports';
 import Navbar from '../component/Navbar';
+import Footer from '../component/Footer';
 const { Auth } = withSSRContext();
 //import Amplify from "@aws-amplify/core";
 //import config from '../aws-exports';
@@ -26,7 +27,12 @@ function MyApp({ Component, pageProps }: AppProps) {
     typeof document !== undefined ? require('bootstrap/dist/js/bootstrap') : null
   }, []);
   return(
-    <><Navbar /><Component {...pageProps} /></>
+    <>
+    <Navbar />
+    <Component {...pageProps} />
+    <Footer/>
+
+    </>
   )
 
 }
