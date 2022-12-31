@@ -7,149 +7,77 @@ import { FaYoutube } from "react-icons/fa";
 function Footer() {
 	return (
 		<>
-<>
-  {/* Remove the container if you want to extend the Footer to full width. */}
-  <div 
-    >
-    {/* Footer */}
-    <footer
-      className="  text-center text-lg-start text-white  "
-      style={{ backgroundColor: "#45526e" }}
-    >
-      {/* Grid container */}
-      <div className="container p-4 pb-0">
-        {/* Section: Links */}
-        <section className="">
-          {/*Grid row*/}
-          <div className="row">
-            {/* Grid column */}
-            <div className="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
-              <h6 className="text-uppercase mb-4 font-weight-bold">
-                PKDRFINANCE
-              </h6>
-              <p>
-                Here you can use rows and columns to organize your footer
-                content. Lorem ipsum dolor sit amet, consectetur adipisicing
-                elit.
-              </p>
-            </div>
-            {/* Grid column */}
-            <hr className="w-100 clearfix d-md-none" />
-            {/* Grid column */}
-            <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
-              <h6 className="text-uppercase mb-4 font-weight-bold">Products</h6>
-              <p>
-                <a className="text-white">PKDRCOIN</a>
-              </p>
-              <p>
-                <a className="text-white">MDWordPress</a>
-              </p>
-              <p>
-                <a className="text-white">BrandFlow</a>
-              </p>
-            </div>
-            {/* Grid column */}
-            <hr className="w-100 clearfix d-md-none" />
-            {/* Grid column */}
-            <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
-              <h6 className="text-uppercase mb-4 font-weight-bold">
-                Useful links
-              </h6>
-              <p>
-                <a className="text-white">Your Account</a>
-              </p>
-              <p>
-                <a className="text-white">Become an Affiliate</a>
-              </p>
-              <p>
-                <a className="text-white">About</a>
-              </p>
-              <p>
-                <a className="text-white">Help</a>
-              </p>
-            </div>
-            {/* Grid column */}
-            <hr className="w-100 clearfix d-md-none" />
-            {/* Grid column */}
-            <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
-              <h6 className="text-uppercase mb-4 font-weight-bold">Contact</h6>
-              <p>
-                <i className="fas fa-home mr-3" /> New York, NY 10012, US
-              </p>
-              <p>
-                <i className="fas fa-envelope mr-3" /> pkdrinfo@gmail.com
-              </p>
-              <p>
-                <i className="fas fa-phone mr-3" /> + 92 234 567 88
-              </p>
-              <p>
-                <i className="fas fa-print mr-3" /> + 92 234 567 89
-              </p>
-            </div>
-            {/* Grid column */}
+<footer className="bg-veryDarkBlue">
+      
+      <div
+        className="container flex flex-col-reverse justify-between px-6 py-10 mx-auto space-y-8 md:flex-row md:space-y-0"
+      >
+      
+        <div
+          className="flex flex-col-reverse items-center justify-between space-y-12 md:flex-col md:space-y-0 md:items-start"
+        >
+          <div className="mx-auto my-6 text-center text-white md:hidden">
+            Copyright &copy; 2022, All Rights Reserved
           </div>
-          {/*Grid row*/}
-        </section>
-        {/* Section: Links */}
-        <hr className="my-3" />
-        {/* Section: Copyright */}
-        <section className="p-3 pt-0">
-          <div className="row d-flex align-items-center">
-            {/* Grid column */}
-            <div className="col-md-7 col-lg-8 text-center text-md-start">
-              {/* Copyright */}
-              <div className="p-3">
-                © 2020 Copyright:
-                <a className="text-white" >
-                PKDRFINANCE
-                </a>
-              </div>
-              {/* Copyright */}
-            </div>
-            {/* Grid column */}
-            {/* Grid column */}
-            <div className="col-md-5 col-lg-4 ml-lg-0 text-center text-md-end">
-              {/* Facebook */}
-              <a
-                className="btn btn-outline-light btn-floating m-1"
-                role="button"
-              >
-                <i className="fab fa-facebook-f" />
-              </a>
-              {/* Twitter */}
-              <a
-                className="btn btn-outline-light btn-floating m-1"
-                role="button"
-              >
-                <i className="fab fa-twitter" />
-              </a>
-              {/* Google */}
-              <a
-                className="btn btn-outline-light btn-floating m-1"
-                role="button"
-              >
-                <i className="fab fa-google" />
-              </a>
-              {/* Instagram */}
-              <a
-                className="btn btn-outline-light btn-floating m-1"
-                role="button"
-              >
-                <i className="fab fa-instagram" />
-              </a>
-            </div>
-            {/* Grid column */}
+    
+          <div>
+            <img src="img/logo.png" className="h-8" alt="" />
           </div>
-        </section>
-        {/* Section: Copyright */}
-      </div>
-      {/* Grid container */}
-    </footer>
-    {/* Footer */}
-  </div>
-  {/* End of .container */}
-</>
+        
+          <div className="flex justify-center space-x-4">
+    
+            <a href="#">
+              <img src="img/facebook.svg" alt="" className="h-8" />
+            </a>
+      
+           
+            <a href="#">
+              <img src="img/twitter.svg" alt="" className="h-8" />
+            </a>
+      
+            <a href="#">
+              <img src="img/instagram.svg" alt="" className="h-8" />
+            </a>
+          </div>
+        </div>
 
+        <div className="flex justify-around space-x-32">
+          <div className="flex flex-col space-y-3 text-white">
+            <a href="#" className="hover:text-brightRed">Home</a>
+            <a href="#" className="hover:text-brightRed">Pricing</a>
+            <a href="#" className="hover:text-brightRed">Products</a>
+            <a href="#" className="hover:text-brightRed">About</a>
+          </div>
+          <div className="flex flex-col space-y-3 text-white">
+            <a href="#" className="hover:text-brightRed">Careers</a>
+            <a href="#" className="hover:text-brightRed">Community</a>
+            <a href="#" className="hover:text-brightRed">Privacy Policy</a>
+            <a href="#" className="hover:text-brightRed">Contact</a>
+          </div>
+        </div>
+
+    
+        <div className="flex flex-col justify-between">
+          <form>
+            <div className="flex space-x-3">
+              <input
+                type="text"
+                className="flex-1 px-4 rounded-full focus:outline-none"
+                placeholder="Search"
+              />
+              <button
+                className="px-6 py-2 text-white rounded-full bg-brightRed hover:bg-brightRedLight focus:outline-none"
+              >
+                Go
+              </button>
+            </div>
+          </form>
+          <div className="hidden text-white md:block">
+            Copyright &copy; 2022, All Rights Reserved
+          </div>
+        </div>
+      </div>
+    </footer>
 		</>
 	);
 }

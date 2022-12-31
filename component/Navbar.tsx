@@ -1,37 +1,80 @@
 import React from 'react'
-import Link from 'next/link'
-import App from './aws-cognito-login/App'
 const Navbar = () => {
+  var login = typeof window !== 'undefined' ? localStorage.getItem('login') : null  
+   
+if(login=="false"|| !login){
+
   return (
+    
     <>
-    <nav className="navbar navbar-expand-lg bg-light">
-  <div className="container-fluid">
-    <a className="navbar-brand" href="#">
-      PKDRFINANCE
-    </a>
-    <button
-      className="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarNav"
-      aria-controls="navbarNav"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span className="navbar-toggler-icon" />
-    </button>
-    <div className="collapse navbar-collapse" id="navbarNav">
-      <ul className="navbar-nav">
-       
-        
-        
+
+<nav className="relative container mx-auto p-6">
+   
+   <div className="flex items-center justify-between">
+ 
+
+   <div>
+            <img src="img/logo.png" className="h-16" alt="" />
+          </div>    
+  
+     <div className="hidden space-x-6 md:flex">
       
-      </ul>
-    </div>
-  </div>
-</nav>
+       <a href="#" className="hover:text-darkGrayishBlue">Products</a>
+       <a href="#" className="hover:text-darkGrayishBlue">Features</a>
+       <a href="#" className="hover:text-darkGrayishBlue">Carrers</a>
+       <a href="#" className="hover:text-darkGrayishBlue">About Us </a>
+       <a href="#" className="hover:text-darkGrayishBlue">Team</a>
+       <a href="#" className="hover:text-darkGrayishBlue">Contacts</a>
+     </div>
+   
+     <a
+       href="#"
+       className="hidden p-3 px-6 pt-2 text-white bg-brightRed rounded-full baseline hover:bg-brightRedLight md:block"
+       >Get Started</a
+     >
+
+   </div>
+ </nav>
 </>
   )
+
+
+}
+else{
+
+return (
+    
+  <>
+
+<nav className="relative container mx-auto p-6">
+  
+
+ <div className="flex items-center justify-between">
+ <div>
+            <img src="img/logo.png" className="h-16" alt="" />
+          </div>    
+ 
+  <div className="hidden space-x-6 md:flex">    
+     <a href="#" className="hover:text-darkGrayishBlue">Products</a>
+     <a href="#" className="hover:text-darkGrayishBlue">Features</a>
+     <a href="#" className="hover:text-darkGrayishBlue">Carrers</a>
+     <a href="#" className="hover:text-darkGrayishBlue">About Us </a>
+     <a href="#" className="hover:text-darkGrayishBlue">Team</a>
+     <a href="#" className="hover:text-darkGrayishBlue">Contacts</a>
+   </div>
+ 
+   <a
+     href="#"
+     className="hidden p-3 px-6 pt-2 text-white bg-brightRed rounded-full baseline hover:bg-brightRedLight md:block"
+     >logout</a
+   >
+
+ </div>
+</nav>
+</>
+)
+
+}
 }
 
 export default Navbar;

@@ -35,6 +35,7 @@ document.cookie = `city=${formState.city}`;
 document.cookie = `country=${formState.country}`; 
 document.cookie = `fathername=${formState.fatherName}`; 
 document.cookie = `gender=${formState.gender}`; 
+document.cookie = `address=${formState.address}`; 
 router.push("/CreateUser")
 
 }
@@ -54,12 +55,13 @@ router.push("/CreateUser")
                 <ListGroup.Item>DATE OF BIRTH: {formState.DOB}</ListGroup.Item>
                 <ListGroup.Item>City: {formState.city}</ListGroup.Item>
                 <ListGroup.Item>Country: {formState.country}</ListGroup.Item>
+                <ListGroup.Item>Address: {formState.address}</ListGroup.Item>
             </ListGroup>
             <Form>
-                <Button onClick={previousStep}  className="btn btn-outline-secondary btn-lg px-4" variant="primary" type="submit">
+                <Button onClick={previousStep}  className=" text-white bg-brightRed hover:bg-brightRedLight btn btn-outline-secondary btn-lg px-4" variant="primary" type="submit">
                     Previous
                 </Button>
-                <Button onClick={Confirm } variant="primary"    className="btn btn-outline-secondary btn-lg px-4">
+                <Button onClick={Confirm } variant="primary"    className="text-white bg-brightRed hover:bg-brightRedLight btn btn-outline-secondary btn-lg px-4">
                     Confirm
                 </Button>
                 

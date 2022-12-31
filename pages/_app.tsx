@@ -21,6 +21,13 @@ import Head from "next/head";
 
 import type { AppProps } from 'next/app'
 
+import dynamic from 'next/dynamic'
+
+const ComponentWithNoSSR = dynamic(
+  () => import('../component/Navbar'),
+  { ssr: false }
+)
+
 function MyApp({ Component, pageProps }: AppProps) {
 
   useEffect(() => {
@@ -28,7 +35,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, []);
   return(
     <>
-    <Navbar />
+    <ComponentWithNoSSR />
     <Component {...pageProps} />
     <Footer/>
 

@@ -42,11 +42,22 @@ export function Form2(props: IProps) {
                         type="number"
                     />
                 </Form.Group>
+
+
+                <Form.Group controlId="formGroupPassword">
+                    <Form.Label className="block text-gray-700 text-sm font-bold mb-2">Address</Form.Label>
+                    <Form.Control
+                        value={formState.address}
+                        onChange={(event) => handleChange(event.target.value, 'address')}
+                        type="text"
+                    />
+                </Form.Group>
+ 
                 <div  className="inline-flex  mb-4 m-3 ">
-                    <Button onClick={previousStep}  className="btn btn-outline-secondary btn-lg px-4"  type="submit">Previous</Button>
+                    <Button onClick={previousStep}  className="text-white bg-brightRed hover:bg-brightRedLight btn btn-outline-secondary btn-lg px-4"  type="submit">Previous</Button>
             
                 
-                    <Button onClick={nextStep}  className="btn btn-outline-secondary btn-lg px-4" type="submit">Continue</Button>
+                    <Button onClick={nextStep}  className="text-white bg-brightRed hover:bg-brightRedLight btn btn-outline-secondary btn-lg px-4" type="submit">Continue</Button>
                     </div>
             </Form>
         </div>

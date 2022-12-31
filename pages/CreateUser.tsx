@@ -1,17 +1,13 @@
-import { GetServerSideProps } from "next";
+import App from '../component/aws-cognito-login/App'
 import { createUser, updateUser } from "../src/graphql/mutations";
-import { getCookieParser } from 'next/dist/server/api-utils';
 //import { Cookies } from 'next/dist/server/web/spec-extension/cookies';
 import { API } from "@aws-amplify/api";
 import * as cookie from 'cookie';
-import  Cookie from 'js-cookie'
 import router, { useRouter } from 'next/router'
-import { Error1 } from "../component/Errors/Error1";
-import Error2 from "../component/Errors/Error2";
-import Error3 from "../component/Errors/Error3";
-
+import Error from 'next/error'
+import { result } from 'lodash';
 function CreateUser() {
-  
+
   const Redirect = async () => {
     
    // router.push("/")
@@ -39,19 +35,24 @@ function CreateUser() {
     return(
       <>
     
-    < div className="px-4 py-5 my-5 text-center" >
-    <h1 className="display-5 fw-bold">Thanks for Registeration </h1>
-    </div>
 
-    <button onClick={Redirect}  type="button" className="btn btn-outline-secondary btn-lg px-4">
-          Signin Now 
-        </button>
+<div className="container py-10 px-10 mx-0 min-w-full flex flex-col items-center">
+  
+
+  <h2 className=" text-black font-bold py-2 px-4 mt-3 rounded">Thanks for Registeration </h2>
+</div>
+   
+
+<div className="container py-10 px-10 mx-0 min-w-full flex flex-col items-center">
+  
+
+  <button className="bg-orange-500 text-white hover:bg-orange-400 font-bold py-2 px-4 mt-3 rounded" onClick={Redirect}>Signin Now</button>
+</div>
+
       </>
       
     )
 }
-
-
 
 export default  CreateUser
 
@@ -80,15 +81,9 @@ const Name=x['name']
 const FATH=x['fathername']
 const GEN=x['gender']
 const dob=x['DOB']
+const add=x['address']
 
-
-
-
-
-
-
-
-  var params = {
+var params = {
       UserPoolId: a,
       Username: EMAIL,   
       TemporaryPassword: b,
@@ -124,11 +119,8 @@ const dob=x['DOB']
            //  reject(err);
          } else {
              console.log("DDD",data);
-             <Error2/>
          }
      })
-
-
 
      try {
       const result = await API.graphql({
@@ -145,6 +137,7 @@ const dob=x['DOB']
                       city:CITY,
                      country: COUNTRY,
                      cnic:CNIC,
+                     address:add,
                     
 
                   
@@ -153,16 +146,11 @@ const dob=x['DOB']
       });
       console.log(result);
      // console.log(currentUser);
+    
   } catch (err) {
       console.log(err);
-      <Error1/>
-  }
-
-
-
-
-
-
+    
+    }
 
 
      var params1 = {
@@ -173,18 +161,15 @@ const dob=x['DOB']
      
      };
 
-
-
-
      var client =await  new AWS.CognitoIdentityServiceProvider();
      client.adminAddUserToGroup(params1, function(err: any, data: any) {
          if (err) {
              console.log("EE",err);
+            
            //  reject(err);
          } else {
              console.log("g",data);
              //resolve(data);
-             <Error3/>
          }
      })
 
@@ -192,82 +177,8 @@ const dob=x['DOB']
 
 
 return{
-  props:{}
+  props:{ }
 }
     
 }
 
-
-function useEffect(arg0: () => void) {
-  throw new Error("Function not implemented.");
-}
-/*
-
-
-export const getServerSideProps: GetServerSideProps = async () => {
-
-  const a=process.env.UserPoolId
-  const e=process.env.secretAccessKey
-  const f=process.env.NEXT_PUBLIC_region
-  const b=process.env. NEXT_PUBLIC_TemporaryPassword
-  const c=process.env. NEXT_PUBLIC_GroupName
-  const d=process.env.NEXT_PUBLIC_accessKeyId
-
-  console.log('user',a)
-
-  var params = {
-      UserPoolId: a,
-      Username: "alisjaikh189@gmail.com",
-      TemporaryPassword: b,
-      
-      
-      UserAttributes: [
-//        {
-  //        Name: "email",
-    //      Value: formState.email
-      //  },
-        {
-          Name: "email_verified",
-          Value: "true"
-        }
-       
-      ]
-  };
-  
-  var params1 = {
-      UserPoolId: a,
-      Username:  "alisjaikh189@gmail.com",
-      
-      GroupName: c
-  
-     
-     };
-
-
-     var AWS = require('aws-sdk');
-     AWS.config.update({
-         accessKeyId: d,
-         secretAccessKey:e,
-         region: f
-         
-     });
-     var client = new AWS.CognitoIdentityServiceProvider();
-     client.adminCreateUser(params, function(err: any, data: any) {
-         if (err) {
-             console.log("EE",err);
-           //  reject(err);
-         } else {
-             console.log("DDD",data);
-             //resolve(data);
-         }
-     })
-
-
-
-
-return{
-  props:{}
-}
-    
-}
-*/

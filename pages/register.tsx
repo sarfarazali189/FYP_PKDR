@@ -20,29 +20,27 @@ useEffect(()=>{
   
     return (
       <>
-  <button  className=   " mb-4 m-3 text-5xl text-center text-black block text-gray-700 text-sm font-bold"onClick={() => setModal(true)}>Open Registerion Form</button>
+
+<div className="container py-10 px-10 mx-0 min-w-full flex flex-col items-center">
+  
+
+  <button className="bg-orange-500 text-white hover:bg-orange-400 font-bold py-2 px-4 mt-3 rounded" onClick={() => setModal(true)}>Register Now</button>
+
+  <br />
+      <br /><br /> <br />
+
+</div>
   <br />
       <br />
 
-
       <br />
       <br />
       <br />
-      <br />
-
-
+      <br /> <br />  <br />      <br />
       <br />
       <br />
       <br />
-      <br />
-      <br />
-      <br />
-
-
-      <br />
-      <br />
-      
-
+      <br />  <br />  <br />      <br />
 
  <div>
     <Modal

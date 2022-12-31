@@ -1,37 +1,21 @@
 import { useEffect, useState } from "react";
 import { Web3AuthCore } from "@web3auth/core";
 import { Web3Auth } from "@web3auth/web3auth";
-import Link from 'next/link'
-import { Auth } from  "@aws-amplify/auth";
 import * as React from 'react';
-//import Check from "../../pages/Check";
-
-import { useRouter } from 'next/router'
-
-import {
-  WALLET_ADAPTERS,
-  CHAIN_NAMESPACES,
-  SafeEventEmitterProvider,
-} from "@web3auth/base";
+import {WALLET_ADAPTERS,CHAIN_NAMESPACES,  SafeEventEmitterProvider,} from "@web3auth/base";
 import { OpenloginAdapter } from "@web3auth/openlogin-adapter";
 import { polygonMumbaiPRC } from "./RPC/polygon-mumbai";
 import Checkuser from "../../pages/Checkuser";
 import Cookies from "js-cookie";
-
-
+import Userinfo from "../../pages/Userinfo";
+import Landingpage from "../../pages/Landingpage";
 const clientId = "BAA4FWUihMGqfS8KcHdaDWZIPxqYtVPtgKBsU2V2KFpmIZGQfHrddtn3fSmsVnWheKMlljgcj3lYY-O_2R3MSyc"; // get from https://dashboard.web3auth.io
 
-function App() {
+function App(this: any) {
   const [web3auth, setWeb3auth] = useState<Web3AuthCore | null>(null);
   const [provider, setProvider] = useState<SafeEventEmitterProvider | null>(
     null
   );
-  const [username, setusername] = React.useState<string>();
-  
-
-
-
-
   useEffect(() => {
     const init = async () => {
       try {
@@ -40,7 +24,6 @@ function App() {
           enableLogging: true,
           sessionTime: 3000
         });
-
         const openloginAdapter = new OpenloginAdapter({
           adapterSettings: {
             clientId,
@@ -69,8 +52,7 @@ function App() {
           },
         });
         web3auth.configureAdapter(openloginAdapter);
-        setWeb3auth(web3auth);
-
+        setWeb3auth(web3auth);      
         await web3auth.init();
         if (web3auth.provider) {
           setProvider(web3auth.provider);
@@ -79,18 +61,10 @@ function App() {
         console.error(error);
       }
     };
-
-  
-
-
     init();
-
   }, []);
 
-
-
   const login = async () => {
-
     if (!web3auth) {
       console.log("web3auth not initialized yet");
       return;
@@ -109,214 +83,76 @@ function App() {
       }
 
     );
-    
-    
-    document.cookie = `identity=${"k191305@nu.edu.pk"}`; 
     localStorage.setItem("login","true")
-
-    
+    document.cookie = `identity=${"k191281@nu.edu.pk"}`; 
     setProvider(web3authProvider);
-
- // const user = await web3auth.getUserInfo();
-    
-
-// localStorage.setItem("login",user.idToken)
-
-    
-    
-
-    
-  
-
   };
-
-
-
-
-
-  
-
 
   const getInfo = async () => {
     if (!web3auth) {
       console.log("web3auth not initialized yet");
       return;
     }
-
     const user = await web3auth.getUserInfo();
-    console.log(user);
-    setusername(user.email);
-//    console.log("usermail",username);
-
+    console.log(user); 
   };
-/*
-  const a=process.env. NEXT_PUBLIC_UserPoolId
-  const d=process.env.NEXT_PUBLIC_accessKeyId
-  const e=process.env.NEXT_PUBLIC_secretAccessKey
-  const f=process.env.NEXT_PUBLIC_region
 
-
-  const router = useRouter()
-  var AWS = require('aws-sdk');
-
-  AWS.config.update({
-      accessKeyId: d,
-      secretAccessKey: e,
-      region: f
-  });
-
-
-  var params2 = {
-      UserPoolId: a,
-      Username: "alisjaikh189@gmail.com"
-     
-  };
-  const admincheck=()=>{
-    var client = new AWS.CognitoIdentityServiceProvider();
-
-    client.adminGetUser(params2, function(err: any, data: any) {
-        if (err) {
-            console.log("Error",err);
-            router.push('/register')
-          
-        } else {
-            console.log("user",data);
-            //resolve(data);
-        }
-    })
-
-}
-*/
   const logout = async () => {
     if (!web3auth) {
       console.log("web3auth not initialized yet");
       return;
     }
     await web3auth.logout();
-    
     setProvider(null);
     const cname="identity"
     localStorage.setItem("login","false")
-
     Cookies.remove(cname);
-
     const windowFeatures = "left=auto,top=auto,width=auto,height=auto";
     window.open(
       "https://pkdrfinancetest.auth.us-west-2.amazoncognito.com/logout?client_id=74qh6dc32eau2n57pe2j1513so&logout_uri=http://localhost:3000&redirect_uri=http://localhost:3000"
     );
   };
-
-  const authenticateUser = async () => {
-    if (!web3auth) {
-      console.log("web3auth not initialized yet");
-      return;
-    }
-    const authenticateUserInfo = await web3auth.authenticateUser();
-    console.log(authenticateUserInfo);
-  }
-
-
-
   const loggedInView = (
-    <div>
-
-
-      <Checkuser/>
+    <> <div>
+ <Checkuser/>
+<Userinfo/>
       <button onClick={getInfo} type="button" className="btn btn-outline-secondary btn-lg px-4" >
         Get User Info
       </button>
-
-
-      <br />
-      <br />
-
-
-      <br />
-      <br />
+     <br /><br /><br />    <br />
       <button onClick={logout} type="button" className="btn btn-outline-secondary btn-lg px-4">
         Log Out
       </button>
-      <br />
-      <br />
-
-
-      <br />
-      <br />
-      <br />
-      <br />
-
-
-      <br />
-      <br />
-      <br />
-      <br />
-
-
-      <br />
-      <br />
-      
-      
+      <br /><br /><br /> <br /><br /> <br /> <br />  
       <div id="console" style={{ whiteSpace: "pre-line" }}>
         <p style={{ whiteSpace: "pre-line" }}></p>
-      </div>
-
-    <div> </div>
-
-    <div> </div>
-
-    <div> </div>
-    </div>
-
+      </div></div>
+<div className="patient-container"></div></>
   );
 
   const unloggedInView = (
-
-
-
-    < div className="px-4 py-5 my-5 text-center" >
-   
-    
-    <h1 className="display-5 fw-bold">PKDRFINANCE</h1>
-    <div className="col-lg-6 mx-auto">
-      <p className="lead mb-4">
-        Quickly design and customize responsive mobile-first sites with Bootstrap,
-        the world’s most popular front-end open source toolkit, featuring Sass
-        variables and mixins, responsive grid system, extensive prebuilt
-        components, and powerful JavaScript plugins.
-      </p>
-      <div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
-        <button onClick={login}  type="button" className="btn btn-outline-secondary btn-lg px-4">
-          Login 
-        </button>
-        <button  onClick={login}  type="button" className="btn btn-outline-secondary btn-lg px-4">
-          Sign Up
-        </button>
-      </div>
-    </div>
-  </div>
-  
-
-   // <button onClick={login} className="card">
-    //  Sign up
-  //  </button>
-  );
-
-
-
-  
+    <>    <section id="hero">
+    <div
+      className="container flex flex-col-reverse items-center px-6 mx-auto mt-10 space-y-0 md:space-y-0 md:flex-row"    >
+      <div className="flex flex-col mb-32 space-y-12 md:w-1/2">
+        <h1 className="max-w-md text-4xl font-bold text-center md:text-5xl md:text-left">
+          Secure and easy way for your future </h1>
+        <p className="max-w-sm text-center text-darkGrayishBlue md:text-left">                    
+Buy, sell, and swap PKDR in minutes
+Verify your identity, add a payment method — like a debit card or bank account — and you’re good to go.</p>
+        <div className="flex justify-center md:justify-start">
+        <button   onClick={login}  type="button" className=" mr-6 py-1 hover:bg-brightRedLigh  bg-brightRed btn  rounded-full btn-lg px-7"> Login </button>
+        <button  onClick={login}  type="button" className="py-1 hover:bg-brightRedLigh  bg-brightRed btn  rounded-full btn-lg px-7">  Sign Up </button>
+        </div></div>
+      <div className="md:w-1/2">
+        <img src="img/bank.png"  />
+      </div> </div>  </section>
+<Landingpage/></>);
   return (
-
-  
     <div className="container">
       <br /><br />
-
       <div className="grid">{provider ? loggedInView : unloggedInView}</div>
     </div>
   );
 }
-
 export default App;
-
-
-
-

@@ -47,10 +47,10 @@ export function Form3(props: IProps) {
                 </Form.Group>
             
                 <div  className="inline-flex  mb-4 m-3 ">
-                    <Button onClick={previousStep}  className="btn btn-outline-secondary btn-lg px-4"  type="submit">Previous</Button>
+                    <Button onClick={previousStep}  className="text-white bg-brightRed hover:bg-brightRedLight btn btn-outline-secondary btn-lg px-4"  type="submit">Previous</Button>
             
                 
-                    <Button onClick={nextStep}  className="btn btn-outline-secondary btn-lg px-4" type="submit">Continue</Button>
+                    <Button onClick={nextStep}  className="text-white bg-brightRed hover:bg-brightRedLight btn btn-outline-secondary btn-lg px-4" type="submit">Continue</Button>
                     </div>
             </Form>
         </div>
