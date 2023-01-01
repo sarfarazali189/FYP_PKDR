@@ -69,8 +69,8 @@ let EMAIL=getCookie(cname)
         router.push('/register')
       
     } else {
-        //console.log("user",data);
-        //resolve(data);
+        console.log("user",data);
+  
       
 
     }

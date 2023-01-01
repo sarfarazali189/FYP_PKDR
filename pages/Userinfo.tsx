@@ -1,8 +1,19 @@
+import React, { useState, useMemo, useEffect } from "react";
 
-import React, { useState, useMemo } from "react";
 const Userinfo = () => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [Gender, setGender] = useState('');
+
+
   
-  function getCookie(cname: string) {
+  const [Fathername, setfather] = useState('');
+  const [Cnic, setCnic] = useState('');
+  const [City, setcity] = useState('');
+  const [Country, setcountry] = useState('');
+  const [Address, setaddress] = useState('');
+
+   function getCookie(cname: string) {
     let name = cname + "=";
     let decodedCookie = decodeURIComponent(document.cookie);
     let ca = decodedCookie.split(';');
@@ -17,54 +28,48 @@ const Userinfo = () => {
     }
     return "";
   }
-  const cname="identity"
 
-let EMAIL=getCookie(cname)
+  const cname = "identity";
+  const emailconst:any = getCookie(cname);
+console.log(emailconst)
+  useEffect(() => {
+    fetchUserData(emailconst);
+  }, [email]);
 
-var name, email
-
-
-  const AWS = require("aws-sdk")
-  AWS.config.update({ region: "us-west-2" })
-  const dynamoDB = new AWS.DynamoDB.DocumentClient()
-var params = {
-  TableName: "User-eoijh3vp4bce5mvuxe5jidk7xi-dev",
+  function fetchUserData(email: string) {
+    const AWS = require("aws-sdk");
+    AWS.config.update({ region: "us-west-2" });
+    const dynamoDB = new AWS.DynamoDB.DocumentClient();
+  
+    const params = {
+      TableName: "User-eoijh3vp4bce5mvuxe5jidk7xi-dev",
       Key: {
-        id: EMAIL,
-      }, 
-}
-
-
-var d=dynamoDB.get(params, function (err: any, data: any) {
-  if (err) {
-      console.log(err)
+        id: emailconst,
+      },
+    };
+  
+    dynamoDB.get(params, (err: any, data: any) => {
+      if (err) {
+        console.error(err);
+      } else {
+        setName(data.Item.name);
+        setEmail(data.Item.id);
+        setCnic(data.Item.cnic)
+        setfather(data.Item.fatherName)
+        setcountry(data.Item.country)
+        setcity(data.Item.city)
+        setaddress(data.Item.address)
+        setGender(data.Item.Gender)
+      }
+    });
   }
-  else  {
-    // console.log(data.Item)
-    name=data.Item.name
-    email=data.Item.id
-    // console.log(name)        
-    // console.log(email)
-    return data;
-
-}
-})
-console.log("Data",d)
-// const {data}=await dynamoDB.get(params).promise();
-// console.log(data)
-//     // console.log(data.Item)
-//     // name=data.Item.name
-//     // email=data.Item.id
-//     // console.log(name)        
-//     // console.log(email)
+  
+  const data = useMemo(() => {
+    return { name, email,Fathername,Cnic,City,Country,Address,Gender };
+  }, [email]);
 
   return (
     <>
-
-
-
-
-
     <div>
     <main className="relative z-0 flex-1 pb-8 px-6 bg-white">
               <div className="grid pb-10  mt-4 ">
@@ -74,7 +79,7 @@ console.log("Data",d)
                           <div className="relative w-full h-full px-4 sm:px-6 lg:px-4 flex items-center justify-center">
                             <div>
                               <h3 className="text-center text-white text-lg">
-                                  Welcome {name}
+                                  Welcome {data.name}
                               </h3>
                               <h3 className="text-center text-white text-3xl mt-2 font-bold">
                               </h3>
@@ -91,8 +96,9 @@ console.log("Data",d)
                                 </div>
                                 <p></p>
                               </div>
-                              <h3 className="text-white text-3xl mt-2 font-bold">
-                              </h3>
+                              <h3 className="text-white text-1xl mt-2 font-bold">
+                              Email {data.email}
+                       </h3>
                                <h3 className="text-white text-lg mt-2 text-yellow-100 ">
                               </h3>
                             </div>
@@ -128,8 +134,7 @@ console.log("Data",d)
 
     </div>
     </>
-  )
-}
+  );
+};
 
 export default Userinfo
-

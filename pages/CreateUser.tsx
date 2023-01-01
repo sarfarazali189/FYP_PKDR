@@ -4,9 +4,11 @@ import { createUser, updateUser } from "../src/graphql/mutations";
 import { API } from "@aws-amplify/api";
 import * as cookie from 'cookie';
 import router, { useRouter } from 'next/router'
-import Error from 'next/error'
+import Error from 'next/error'   //default nextjs provided ssr error component 
 import { result } from 'lodash';
-function CreateUser() {
+import Errors from '../component/Errors';
+
+function CreateUser({ errorCode }:any) {
 
   const Redirect = async () => {
     
@@ -31,6 +33,11 @@ function CreateUser() {
 
 
 */
+
+if (errorCode) {
+  return <Error statusCode={errorCode} />
+}
+
 
     return(
       <>
@@ -116,6 +123,7 @@ var params = {
      client.adminCreateUser(params, function(err: any, data: any) {
          if (err) {
              console.log("EE",err);
+               return <Errors error={err} />
            //  reject(err);
          } else {
              console.log("DDD",data);
@@ -145,10 +153,12 @@ var params = {
           },
       });
       console.log(result);
-     // console.log(currentUser);
+     // const errorCode = result.ok ? false : result.status  
     
-  } catch (err) {
-      console.log(err);
+    
+  } catch (error) {
+      console.log(error);
+      return <Errors error={error} />
     
     }
 
@@ -166,10 +176,11 @@ var params = {
          if (err) {
              console.log("EE",err);
             
-           //  reject(err);
+             return <Errors error={err} />
+        
          } else {
              console.log("g",data);
-             //resolve(data);
+        
          }
      })
 

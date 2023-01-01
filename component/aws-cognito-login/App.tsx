@@ -10,7 +10,6 @@ import Cookies from "js-cookie";
 import Userinfo from "../../pages/Userinfo";
 import Landingpage from "../../pages/Landingpage";
 const clientId = "BAA4FWUihMGqfS8KcHdaDWZIPxqYtVPtgKBsU2V2KFpmIZGQfHrddtn3fSmsVnWheKMlljgcj3lYY-O_2R3MSyc"; // get from https://dashboard.web3auth.io
-
 function App(this: any) {
   const [web3auth, setWeb3auth] = useState<Web3AuthCore | null>(null);
   const [provider, setProvider] = useState<SafeEventEmitterProvider | null>(
