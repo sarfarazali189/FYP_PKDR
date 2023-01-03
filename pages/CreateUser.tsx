@@ -9,15 +9,17 @@ import { result } from 'lodash';
 import Errors from '../component/Errors';
 import{ Context} from "../src/context/Web3store/Store"
 import { useContext } from 'react';
+import Cookies from 'js-cookie';
 function CreateUser({ errorCode }:any) {
-  let web3auth=useContext(Context).web3auth;
-  let provider=  useContext(Context).provider;
+//  let web3auth=useContext(Context).web3auth;
+  //let provider=  useContext(Context).provider;
 
   const Redirect = async () => {
-   // router.push("/")
+  
+   router.push("/")
   }
 
-  
+  /*
   const logout = async () => {
     if (!web3auth) {
       console.log("web3auth not initialized yet");
@@ -33,7 +35,7 @@ function CreateUser({ errorCode }:any) {
   };
 
 
-
+*/
 
 if (errorCode) {
   return <Error statusCode={errorCode} />

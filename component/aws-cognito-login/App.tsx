@@ -125,7 +125,7 @@ function App(this: any) {
   };
 
   const loggedInView = (
-    <>  <Checkuser web3={web3auth}  />
+    <>  <Checkuser   />
     <Userinfo/>
     <div>
  

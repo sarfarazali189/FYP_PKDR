@@ -4,15 +4,15 @@ const Userinfo = () => {
 
 let x=1
   
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [Gender, setGender] = useState('');
+  const [name, setName] = useState<any>('');
+  const [email, setEmail] = useState<any>('');
+  const [Gender, setGender] = useState<any>('');
   
-  const [Fathername, setfather] = useState('');
-  const [Cnic, setCnic] = useState('');
-  const [City, setcity] = useState('');
-  const [Country, setcountry] = useState('');
-  const [Address, setaddress] = useState('');
+  const [Fathername, setfather] = useState<any>('');
+  const [Cnic, setCnic] = useState<any>('');
+  const [City, setcity] = useState<any>('');
+  const [Country, setcountry] = useState<any>('');
+  const [Address, setaddress] = useState<any>('');
 
    function getCookie(cname: string) {
     let name = cname + "=";
@@ -49,12 +49,14 @@ let x=1
     };
 
   
-
-    dynamoDB.get(params, (err: any, data: any) => {
+try {
+  dynamoDB.get(params, (err: any, data: any) => {
       if (err) {
         console.error(err);
       
       } else {
+        if(  typeof(data.Item)=="object"){
+          console.log("Data", data)
         setName(data.Item.name);
         setEmail(data.Item.id);
         setCnic(data.Item.cnic)
@@ -63,8 +65,23 @@ let x=1
         setcity(data.Item.city)
         setaddress(data.Item.address)
         setGender(data.Item.Gender)
+        }
+        else{
+          setName(null);
+        setEmail(null);
+        setCnic(null);
+        setfather(null)
+        setcountry(null)
+        setcity(null)
+        setaddress(null)
+        setGender(null)
+        }
       }
     });
+} catch (error) {
+  console.log("error")
+}
+    
   }
   
   const data = useMemo(() => {
@@ -82,9 +99,9 @@ let x=1
                           <div className="relative w-full h-full px-4 sm:px-6 lg:px-4 flex items-center justify-center">
                             <div>
                               <h3 className="text-center text-white text-lg">
-                                  Welcome {data.name}
+                                  Welcome 
                               </h3>
-                              <h3 className="text-center text-white text-3xl mt-2 font-bold">
+                              <h3 className="text-center text-white text-3xl mt-2 font-bold">{data.name}
                               </h3>
                               </div>
                           </div>
@@ -93,16 +110,16 @@ let x=1
                           <div className="absolute inset-0 bg-yellow-600 bg-opacity-75 transition duration-300 ease-in-out"></div>
                             <div className="relative w-full h-full px-4 sm:px-6 lg:px-4 flex items-center">
                             <div>
-                              <div className="text-white text-lg flex space-x-2 items-center">
-                                <div className="bg-white rounded-md p-2 flex items-center">
+                              <div className="text-center text-white text-lg flex space-x-2 items-center">
+                                <div style={{textAlign: "center"}}>
                                   <i className="fas fa-toggle-off fa-sm text-yellow-300"></i>
                                 </div>
-                                <p></p>
+                                <h1 > Email </h1>
                               </div>
                               <h3 className="text-white text-1xl mt-2 font-bold">
-                              Email {data.email}
+                             
                        </h3>
-                               <h3 className="text-white text-lg mt-2 text-yellow-100 ">
+                               <h3 className="text-white text-lg mt-2 text-yellow-100 ">{data.email}
                               </h3>
                             </div>
                           </div>
@@ -112,13 +129,13 @@ let x=1
                           <div className="relative w-full h-full px-4 sm:px-6 lg:px-4 flex items-center">
                             <div>
                               <div className="text-white text-lg flex space-x-2 items-center">
-                                <div className="bg-white rounded-md p-2 flex items-center">
+                                <div>
                                   <i className="fas fa-clipboard-check fa-sm text-blue-800"></i>
                                 </div>
-                                <h2></h2>
+                                <h2>Balance</h2>
                               </div>
                               <h3 className="text-white text-3xl mt-2 font-bold">
-                              
+                             0.00 PKDR
                               </h3>
                                <h3 className="text-white text-lg mt-2 ">
                                

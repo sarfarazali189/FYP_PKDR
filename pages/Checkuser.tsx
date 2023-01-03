@@ -50,7 +50,7 @@ else{
 //useContext(Context).web3auth="sting"
 //useContext(Context).provider=props.provide
 
-console.log("sarfaraz",props.web3.getUserInfo())
+
   var AWS = require('aws-sdk');
   AWS.config.update({
       accessKeyId: d,
