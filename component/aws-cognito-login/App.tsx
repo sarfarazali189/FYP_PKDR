@@ -9,12 +9,16 @@ import Checkuser from "../../pages/Checkuser";
 import Cookies from "js-cookie";
 import Userinfo from "../../pages/Userinfo";
 import Landingpage from "../../pages/Landingpage";
+import { Context } from "../../src/context/Web3store/Store";
 const clientId = "BAA4FWUihMGqfS8KcHdaDWZIPxqYtVPtgKBsU2V2KFpmIZGQfHrddtn3fSmsVnWheKMlljgcj3lYY-O_2R3MSyc"; // get from https://dashboard.web3auth.io
 function App(this: any) {
   const [web3auth, setWeb3auth] = useState<Web3AuthCore | null>(null);
   const [provider, setProvider] = useState<SafeEventEmitterProvider | null>(
     null
   );
+
+  //let provider=React.useContext(Context).provider;
+
   useEffect(() => {
     const init = async () => {
       try {
@@ -83,17 +87,24 @@ function App(this: any) {
 
     );
     localStorage.setItem("login","true")
-    document.cookie = `identity=${"k191281@nu.edu.pk"}`; 
+    //document.cookie = `identity=${"k191281@nu.edu.pk"}`; 
     setProvider(web3authProvider);
+    React.useContext(Context).web3auth=web3auth;
+
   };
+
 
   const getInfo = async () => {
     if (!web3auth) {
       console.log("web3auth not initialized yet");
       return;
     }
-    const user = await web3auth.getUserInfo();
-    console.log(user); 
+    //const user = await web3auth.getUserInfo();
+    //console.log(user); 
+    //let x =await JSON.parse(localStorage.openlogin_store)
+    //document.cookie = `identity=${x["email"]}`; 
+    
+    //console.log("email",x["email"])
   };
 
   const logout = async () => {
@@ -101,6 +112,7 @@ function App(this: any) {
       console.log("web3auth not initialized yet");
       return;
     }
+
     await web3auth.logout();
     setProvider(null);
     const cname="identity"
@@ -111,10 +123,14 @@ function App(this: any) {
       "https://pkdrfinancetest.auth.us-west-2.amazoncognito.com/logout?client_id=74qh6dc32eau2n57pe2j1513so&logout_uri=http://localhost:3000&redirect_uri=http://localhost:3000"
     );
   };
+
   const loggedInView = (
-    <> <div>
- <Checkuser/>
-<Userinfo/>
+    <>  <Checkuser web3={web3auth}  />
+    <Userinfo/>
+    <div>
+ 
+ 
+
       <button onClick={getInfo} type="button" className="btn btn-outline-secondary btn-lg px-4" >
         Get User Info
       </button>

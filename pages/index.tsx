@@ -4,7 +4,7 @@ import Amplify from "@aws-amplify/core";
 import { CognitoHostedUIIdentityProvider } from '@aws-amplify/auth';
 import App from '../component/aws-cognito-login/App'
 import React, { useEffect, useState } from 'react';
-
+import Store from '../src/context/Web3store/Store';
 import awsExports from "../src/aws-exports";
 
 
@@ -16,6 +16,7 @@ Amplify.configure({ ...awsExports, ssr: true });
 const Home: NextPage = () => {
 
   return (
+    <Store>
     <div >
       <Head>
         <title>Create Next App</title>
@@ -25,9 +26,8 @@ const Home: NextPage = () => {
 
      <App />
 
-
-    
     </div>
+    </Store>
   )
 }
 

@@ -1,11 +1,12 @@
 import React, { useState, useMemo, useEffect } from "react";
-
+import register from "./register";
 const Userinfo = () => {
+
+let x=1
+  
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [Gender, setGender] = useState('');
-
-
   
   const [Fathername, setfather] = useState('');
   const [Cnic, setCnic] = useState('');
@@ -31,7 +32,6 @@ const Userinfo = () => {
 
   const cname = "identity";
   const emailconst:any = getCookie(cname);
-console.log(emailconst)
   useEffect(() => {
     fetchUserData(emailconst);
   }, [email]);
@@ -47,10 +47,13 @@ console.log(emailconst)
         id: emailconst,
       },
     };
+
   
+
     dynamoDB.get(params, (err: any, data: any) => {
       if (err) {
         console.error(err);
+      
       } else {
         setName(data.Item.name);
         setEmail(data.Item.id);
@@ -72,7 +75,7 @@ console.log(emailconst)
     <>
     <div>
     <main className="relative z-0 flex-1 pb-8 px-6 bg-white">
-              <div className="grid pb-10  mt-4 ">
+<div className="grid pb-10  mt-4 ">
                     <div className="grid grid-cols-1 gap-2 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 mt-3">
                       <div className="relative w-full h-52 bg-cover bg-center group rounded-lg overflow-hidden shadow-lg transition duration-300 ease-in-out">
                           <div className="absolute inset-0 bg-pink-900 bg-opacity-75 transition duration-300 ease-in-out"></div>
@@ -124,14 +127,9 @@ console.log(emailconst)
                           </div>
                       </div>        
                     </div>
-                    
-        
+                 
               </div>
           </main>
-
-
-    
-
     </div>
     </>
   );

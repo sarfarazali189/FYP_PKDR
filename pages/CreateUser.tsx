@@ -7,24 +7,25 @@ import router, { useRouter } from 'next/router'
 import Error from 'next/error'   //default nextjs provided ssr error component 
 import { result } from 'lodash';
 import Errors from '../component/Errors';
-
+import{ Context} from "../src/context/Web3store/Store"
+import { useContext } from 'react';
 function CreateUser({ errorCode }:any) {
+  let web3auth=useContext(Context).web3auth;
+  let provider=  useContext(Context).provider;
 
   const Redirect = async () => {
-    
    // router.push("/")
-    
   }
 
-  /*
+  
   const logout = async () => {
     if (!web3auth) {
       console.log("web3auth not initialized yet");
       return;
     }
     await web3auth.logout();
-    
-    setProvider(null);
+    useContext(Context).Provider=null;    
+   // setProvider(null);
     const windowFeatures = "left=auto,top=auto,width=auto,height=auto";
     window.open(
       "https://pkdrfinancetest.auth.us-west-2.amazoncognito.com/logout?client_id=74qh6dc32eau2n57pe2j1513so&logout_uri=http://localhost:3000&redirect_uri=http://localhost:3000"
@@ -32,7 +33,7 @@ function CreateUser({ errorCode }:any) {
   };
 
 
-*/
+
 
 if (errorCode) {
   return <Error statusCode={errorCode} />

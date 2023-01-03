@@ -65,8 +65,8 @@ return (
  
    <a
      href="#"
-     className="hidden p-3 px-6 pt-2 text-white bg-brightRed rounded-full baseline hover:bg-brightRedLight md:block"
-     >logout</a
+     className="hidden p-3 px-6 pt-2 text-white rounded-full baseline md:block"
+     ></a
    >
 
  </div>

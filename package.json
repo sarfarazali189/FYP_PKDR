@@ -13,6 +13,8 @@
     "@aws-amplify/ui-components": "^1.9.40",
     "@aws-amplify/ui-react": "^3.5.11",
     "@aws-sdk/client-cognito-identity-provider": "^3.209.0",
+    "@headlessui/react": "^1.7.7",
+    "@heroicons/react": "^2.0.13",
     "@types/js-cookie": "^3.0.2",
     "@web3auth/base": "^1.2.0",
     "@web3auth/core": "^1.2.0",

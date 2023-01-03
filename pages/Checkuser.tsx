@@ -1,9 +1,10 @@
 import { GetServerSideProps } from 'next'
 import router, { useRouter } from 'next/router'
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import Userinfo from './Userinfo';
+import {Context} from "../src/context/Web3store/Store"
 
-
-function checkuser  () {
+function checkuser  (props:any) {
 
   function getCookie(cname: string) {
     let name = cname + "=";
@@ -41,14 +42,26 @@ else{
  // var x = document.cookie;
   const cname="identity"
 //  console.log("id",x)
+//useEffect(() => {
+  //useContext(Context).web3auth="sting"
+//useContext(Context).provider=props.provide
+  //;
+//},);
+//useContext(Context).web3auth="sting"
+//useContext(Context).provider=props.provide
 
+console.log("sarfaraz",props.web3.getUserInfo())
   var AWS = require('aws-sdk');
-
   AWS.config.update({
       accessKeyId: d,
       secretAccessKey: e,
       region: f
   });
+
+  let x = JSON.parse(localStorage.openlogin_store)
+  document.cookie = `identity=${x["email"]}`; 
+  
+  console.log("email",x["email"])
 
 
 let EMAIL=getCookie(cname)
@@ -67,9 +80,11 @@ let EMAIL=getCookie(cname)
       if (err) {
         //console.log("Error",err);
         router.push('/register')
+
       
     } else {
         console.log("user",data);
+        
   
       
 
