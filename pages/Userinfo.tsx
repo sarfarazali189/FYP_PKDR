@@ -111,15 +111,15 @@ try {
                             <div className="relative w-full h-full px-4 sm:px-6 lg:px-4 flex items-center">
                             <div>
                               <div className="text-center text-white text-lg flex space-x-2 items-center">
-                                <div style={{textAlign: "center"}}>
+                                <div >
                                   <i className="fas fa-toggle-off fa-sm text-yellow-300"></i>
                                 </div>
-                                <h1 > Email </h1>
+                                <h3 className="text-center text-white text-lg"> Email </h3>
                               </div>
                               <h3 className="text-white text-1xl mt-2 font-bold">
                              
                        </h3>
-                               <h3 className="text-white text-lg mt-2 text-yellow-100 ">{data.email}
+                               <h3 className="text-center text-white  mt-2 font-bold">{data.email}
                               </h3>
                             </div>
                           </div>
